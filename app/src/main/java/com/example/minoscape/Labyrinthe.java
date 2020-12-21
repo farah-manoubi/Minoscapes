@@ -22,7 +22,9 @@ public class Labyrinthe extends View{
     private Random random;
 
     private Bitmap hiro;
+
     private Bitmap minotaur;
+
     private Bitmap coin1;
     private Bitmap coin2;
     private Bitmap coin3;
