@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.Stack;
 
@@ -128,17 +129,135 @@ public class Labyrinthe extends View{
             }
         }
 
+        HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
+        Boolean bool = false;
+
         player = cells[0][0]; //AJOUT
+        hm.put(0,0);
         exit = cells[COLS-1][ROWS-1]; //AJOUT
         Random rdm1 = new Random();
+        int x = rdm1.nextInt(COLS-1);
+        int y = rdm1.nextInt(ROWS-1);
 
-        minos = cells[rdm1.nextInt(COLS-1)][rdm1.nextInt(ROWS-1)];
+        while(bool==false) {
+            if(hm.containsKey(x)) {
+                if(hm.get(x)==y) {
+                    x = rdm1.nextInt(COLS-1);
+                    y = rdm1.nextInt(ROWS-1);
+                }
+                else {
+                    bool = true;
+                    minos = cells[x][y];
+                    hm.put(x,y);
+                }
+            }
+            else {
+                bool = true;
+                minos = cells[x][y];
+                hm.put(x,y);
+            }
+        }
+        bool = false;
+        while(bool==false) {
+            if(hm.containsKey(x)) {
+                if(hm.get(x)==y) {
+                    x = rdm1.nextInt(COLS-1);
+                    y = rdm1.nextInt(ROWS-1);
+                }
+                else {
+                    bool = true;
+                    coins1 = cells[x][y];
+                    hm.put(x,y);
+                }
+            }
+            else {
+                bool = true;
+                coins1 = cells[x][y];
+                hm.put(x,y);
+            }
+        }
+        bool = false;
+        while(bool==false) {
+            if(hm.containsKey(x)) {
+                if(hm.get(x)==y) {
+                    x = rdm1.nextInt(COLS-1);
+                    y = rdm1.nextInt(ROWS-1);
+                }
+                else {
+                    bool = true;
+                    coins2 = cells[x][y];
+                    hm.put(x,y);
+                }
+            }
+            else {
+                bool = true;
+                coins2 = cells[x][y];
+                hm.put(x,y);
+            }
+        }
+        bool = false;
+        while(bool==false) {
+            if(hm.containsKey(x)) {
+                if(hm.get(x)==y) {
+                    x = rdm1.nextInt(COLS-1);
+                    y = rdm1.nextInt(ROWS-1);
+                }
+                else {
+                    bool = true;
+                    coins3 = cells[x][y];
+                    hm.put(x,y);
+                }
+            }
+            else {
+                bool = true;
+                coins3 = cells[x][y];
+                hm.put(x,y);
+            }
+        }
+        bool = false;
+        while(bool==false) {
+            if(hm.containsKey(x)) {
+                if(hm.get(x)==y) {
+                    x = rdm1.nextInt(COLS-1);
+                    y = rdm1.nextInt(ROWS-1);
+                }
+                else {
+                    bool = true;
+                    coins4 = cells[x][y];
+                    hm.put(x,y);
+                }
+            }
+            else {
+                bool = true;
+                coins4 = cells[x][y];
+                hm.put(x,y);
+            }
+        }
+        bool = false;
+        while(bool==false) {
+            if(hm.containsKey(x)) {
+                if(hm.get(x)==y) {
+                    x = rdm1.nextInt(COLS-1);
+                    y = rdm1.nextInt(ROWS-1);
+                }
+                else {
+                    bool = true;
+                    coins5 = cells[x][y];
+                    hm.put(x,y);
+                }
+            }
+            else {
+                bool = true;
+                coins5 = cells[x][y];
+                hm.put(x,y);
+            }
+        }
 
-        coins1 = cells[rdm1.nextInt(COLS-1)][rdm1.nextInt(ROWS-1)];
+        /*coins1 = cells[rdm1.nextInt(COLS-1)][rdm1.nextInt(ROWS-1)];
         coins2 = cells[rdm1.nextInt(COLS-1)][rdm1.nextInt(ROWS-1)];
         coins3 = cells[rdm1.nextInt(COLS-1)][rdm1.nextInt(ROWS-1)];
         coins4 = cells[rdm1.nextInt(COLS-1)][rdm1.nextInt(ROWS-1)];
-        coins5 = cells[rdm1.nextInt(COLS-1)][rdm1.nextInt(ROWS-1)];
+        coins5 = cells[rdm1.nextInt(COLS-1)][rdm1.nextInt(ROWS-1)];*/
 
 
 
