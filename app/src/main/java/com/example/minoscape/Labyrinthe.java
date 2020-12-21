@@ -27,6 +27,7 @@ public class Labyrinthe extends View{
     private Bitmap coin2;
     private Bitmap coin3;
     private Bitmap coin4;
+
     private Bitmap coin5;
 
 
