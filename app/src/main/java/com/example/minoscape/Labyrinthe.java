@@ -6,14 +6,30 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Build;
+import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
+
+import androidx.annotation.RequiresApi;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Random;
 import java.util.Stack;
 
-public class Labyrinthe extends View{
+import static android.content.Context.SENSOR_SERVICE;
+import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
+import static androidx.core.content.ContextCompat.getSystemService;
+
+public class Labyrinthe extends View implements SensorEventListener {
     private Cell[][] cells;
     private Cell player, exit, minos, coins1, coins2, coins3, coins4, coins5; //Ajout
     private static final int COLS=14, ROWS=9;
@@ -30,8 +46,14 @@ public class Labyrinthe extends View{
     private Bitmap coin2;
     private Bitmap coin3;
     private Bitmap coin4;
-
     private Bitmap coin5;
+
+    private HashMap<Float, Float> lastValues = new HashMap<Float, Float>();
+    private float lastX, lastY, deltaX, deltaY;
+    private ArrayList<Long> al = new ArrayList<Long>();
+    private static int ABS;
+    private static int ORD;
+    int currentX, currentY;
 
 
 
@@ -54,6 +76,13 @@ public class Labyrinthe extends View{
 
         creatMaze();
     }
+
+    public Labyrinthe (Context context, Bitmap hiro){
+        super(context);
+        hiro = BitmapFactory.decodeResource(getResources(), R.drawable.hiro);
+
+    }
+
 
     private Cell getNeighbour(Cell cell) {
         ArrayList<Cell> neighbours = new ArrayList<>();
@@ -118,25 +147,27 @@ public class Labyrinthe extends View{
 
     private void creatMaze(){
 
-        Stack<Cell> stack = new Stack<>();
-        Cell current, next;
+       Stack<Cell> stack = new Stack<>();
+       Cell current, next;
 
-        cells=new Cell[COLS][ROWS];
+       cells=new Cell[COLS][ROWS];
 
-        for(int x=0; x<COLS; x++){
-            for(int y=0; y<ROWS; y++){
-                cells[x][y]=new Cell(x,y);
-            }
-        }
+       for(int x=0; x<COLS; x++){
+           for(int y=0; y<ROWS; y++){
+               cells[x][y]=new Cell(x,y);
+           }
+       }
 
-        HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
-        Boolean bool = false;
+       HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
+       Boolean bool = false;
 
-        player = cells[0][0]; //AJOUT
-        hm.put(0,0);
-        exit = cells[COLS-1][ROWS-1]; //AJOUT
-        Random rdm1 = new Random();
-        int x = rdm1.nextInt(COLS-1);
+       player = cells[0][0]; //AJOUT
+       ABS = player.getCol();
+       ORD = player.getRow();
+       hm.put(0,0);
+       exit = cells[COLS-1][ROWS-1]; //AJOUT
+       Random rdm1 = new Random();
+       int x = rdm1.nextInt(COLS-1);
         int y = rdm1.nextInt(ROWS-1);
 
         while(bool==false) {
@@ -333,7 +364,7 @@ public class Labyrinthe extends View{
         float margin = cellSize/10;
 
         hiro = getResizedBitmap(hiro, (int)((player.col+1)*cellSize-(margin*2)), (int)((player.row+1)*cellSize-(margin)));
-        canvas.drawBitmap(hiro, player.col*cellSize+margin, player.row*cellSize+margin, null);
+        canvas.drawBitmap(hiro, ABS*cellSize+margin, ORD*cellSize+margin, null);
 
         minotaur = getResizedBitmap(minotaur, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
         canvas.drawBitmap(minotaur,minos.col*cellSize+margin, minos.row*cellSize+margin, null);
@@ -352,8 +383,106 @@ public class Labyrinthe extends View{
         canvas.drawBitmap(coin5,coins5.col*cellSize+margin, coins5.row*cellSize+margin, null);
 
 
+        //System.out.println("Player[" + player.getCol() + "][" + player.getRow() + "]");
         //canvas.drawRect(player.col*cellSize+margin, player.row*cellSize+margin, (player.col+1)*cellSize-margin, (player.row+1)*cellSize-margin, playerPaint); //AJOUT
 
         //canvas.drawRect(exit.col*cellSize+margin, exit.row*cellSize+margin, (exit.col+1)*cellSize-margin, (exit.row+1)*cellSize-margin, exitPaint); //AJOUT
+    }
+
+
+
+
+   private void moveImage(float deltaX, float deltaY, float x, float y, float lastX, float lastY) {
+        int abs = ABS;
+        int ord = ORD;
+        if(deltaX != 0) {
+            if(lastX - x < 0 && abs != COLS-1) { //droite
+                //player = cells[abs+1][ord];
+                ABS += 1;
+            }
+            if(lastX - x > 0 && abs != 0) { //Gauche
+                //player = cells[abs-1][ord];
+                ABS -= 1;
+            }
+        }
+       else if(deltaY != 0) {
+           if(lastY - y < 0 && ord != ROWS-1) { //Haut
+               //player = cells[abs][ord+1];
+               ORD += 1;
+           }
+           if(lastY - y > 0 && ord != 0) { //Bas
+               //player = cells[abs][ord-1];
+               ORD -= 1;
+           }
+       }
+
+       //invalidate();
+   }
+
+
+
+   @RequiresApi(api = Build.VERSION_CODES.N)
+   @Override
+   public void onSensorChanged(SensorEvent event) {
+
+       if(al.isEmpty()) {
+           al.add((long) 0);
+       }
+       else {
+           long curTime = System.currentTimeMillis();
+           long lastUpdate = al.get(0);
+           if ((curTime - lastUpdate) > 1000) {
+               long diffTime = (curTime - lastUpdate);
+               lastUpdate = curTime;
+               al.remove(0);
+               al.add(lastUpdate);
+               float x = event.values[0];
+               float y = event.values[1];
+               Boolean bool = false;
+               if (!lastValues.isEmpty()) {
+                   for (Map.Entry mapentry : lastValues.entrySet()) {
+                       lastX = (float) mapentry.getKey();
+                       lastY = (float) mapentry.getValue();
+                   }
+                   lastValues.remove(lastX, lastY);
+                   lastValues.put(x, y);
+
+                   deltaX = Math.abs(lastX - x);
+                   deltaY = Math.abs(lastY - y);
+
+                   if (deltaX < 0.5) {
+                       deltaX = 0;
+                   }
+                   if (deltaY < 0.5) {
+                       deltaY = 0;
+                   }
+
+                   System.out.println("Les valeurs sont x =" + x + "    y =" + y);
+                   System.out.println("LastX = " + lastX + "      LastY = " + lastY);
+                   System.out.println("DeltaX = " + deltaX + "      DeltaY =" + deltaY);
+
+                   try {
+                       System.out.println("Player[" + ABS + "][" + ORD + "]");
+                   } catch (NullPointerException e) {
+                       System.out.println("Le player n'existe pas");
+                   }
+
+                   System.out.println(" ");
+                   this.moveImage(deltaX,deltaY, x, y, lastX, lastY);
+
+                   invalidate();
+
+               } else {
+                   lastValues.put(x, y);
+                   System.out.println("Les valeurs sont x =" + x + "    y =" + y);
+               }
+           }
+
+       }
+   }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
     }
 }
