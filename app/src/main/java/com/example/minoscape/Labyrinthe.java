@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 
@@ -42,11 +43,10 @@ public class Labyrinthe extends View implements SensorEventListener {
 
     private Bitmap minotaur;
 
-    private Bitmap coin1;
-    private Bitmap coin2;
-    private Bitmap coin3;
-    private Bitmap coin4;
-    private Bitmap coin5;
+    private Bitmap coin1, coin2, coin3, coin4, coin5;
+    private boolean Bcoin1 = true, Bcoin2 = true, Bcoin3 = true, Bcoin4 = true, Bcoin5 = true;
+
+
 
     private HashMap<Float, Float> lastValues = new HashMap<Float, Float>();
     private float lastX, lastY, deltaX, deltaY;
@@ -55,6 +55,7 @@ public class Labyrinthe extends View implements SensorEventListener {
     private static int ORDCURRENT;
     private static int ABSNEXT;
     private static int ORDNEXT;
+    private TextView tv;
     int currentX, currentY;
 
 
@@ -416,25 +417,51 @@ public class Labyrinthe extends View implements SensorEventListener {
         canvas.drawBitmap(minotaur,minos.col*cellSize+margin, minos.row*cellSize+margin, null);
         //Ici "minos" est une cellule ou il y a le minotaure
 
-        coin1 = getResizedBitmap(coin1, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
-        coin2 = getResizedBitmap(coin2, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
-        coin3 = getResizedBitmap(coin3, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
-        coin4 = getResizedBitmap(coin4, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
-        coin5 = getResizedBitmap(coin5, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
+        if(ABSCURRENT == coins1.col && ORDCURRENT == coins1.row) {
+            Bcoin1 = false;
+        }
+        if(ABSCURRENT == coins2.col && ORDCURRENT == coins2.row) {
+            Bcoin2 = false;
+        }
+        if(ABSCURRENT == coins3.col && ORDCURRENT == coins3.row) {
+            Bcoin3 = false;
+        }
+        if(ABSCURRENT == coins4.col && ORDCURRENT == coins4.row) {
+            Bcoin4 = false;
+        }
+        if(ABSCURRENT == coins5.col && ORDCURRENT == coins5.row) {
+            Bcoin5 = false;
+        }
 
-        canvas.drawBitmap(coin1,coins1.col*cellSize+margin, coins1.row*cellSize+margin, null);
-        canvas.drawBitmap(coin2,coins2.col*cellSize+margin, coins2.row*cellSize+margin, null);
-        canvas.drawBitmap(coin3,coins3.col*cellSize+margin, coins3.row*cellSize+margin, null);
-        canvas.drawBitmap(coin4,coins4.col*cellSize+margin, coins4.row*cellSize+margin, null);
-        canvas.drawBitmap(coin5,coins5.col*cellSize+margin, coins5.row*cellSize+margin, null);
+        if(Bcoin1) {
+            coin1 = getResizedBitmap(coin1, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
+            canvas.drawBitmap(coin1,coins1.col*cellSize+margin, coins1.row*cellSize+margin, null);
+        }
+        if(Bcoin2) {
+            coin2 = getResizedBitmap(coin2, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
+            canvas.drawBitmap(coin2,coins2.col*cellSize+margin, coins2.row*cellSize+margin, null);
+        }
+        if(Bcoin3) {
+            coin3 = getResizedBitmap(coin3, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
+            canvas.drawBitmap(coin3,coins3.col*cellSize+margin, coins3.row*cellSize+margin, null);
+        }
+        if(Bcoin4) {
+            coin4 = getResizedBitmap(coin4, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
+            canvas.drawBitmap(coin4,coins4.col*cellSize+margin, coins4.row*cellSize+margin, null);
+        }
+        if(Bcoin5) {
+            coin5 = getResizedBitmap(coin5, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
+            canvas.drawBitmap(coin5,coins5.col*cellSize+margin, coins5.row*cellSize+margin, null);
+        }
+
 
         //System.out.println("Player[" + player.getCol() + "][" + player.getRow() + "]");
         //canvas.drawRect(player.col*cellSize+margin, player.row*cellSize+margin, (player.col+1)*cellSize-margin, (player.row+1)*cellSize-margin, playerPaint); //AJOUT
 
         //canvas.drawRect(exit.col*cellSize+margin, exit.row*cellSize+margin, (exit.col+1)*cellSize-margin, (exit.row+1)*cellSize-margin, exitPaint); //AJOUT
         invalidate();
+        invalidate();
     }
-
 
 
 
@@ -452,13 +479,13 @@ public class Labyrinthe extends View implements SensorEventListener {
            }
        }
        else if(deltaY != 0) {
-           if(lastY - y < 0 && ord != ROWS-1) { //Haut
+           if(lastY - y < 0 && ord != 0) { //Haut
                //player = cells[abs][ord+1];
-               ORDNEXT += 1;
-           }
-           if(lastY - y > 0 && ord != 0) { //Bas
-               //player = cells[abs][ord-1];
                ORDNEXT -= 1;
+           }
+           if(lastY - y > 0 && ord != ROWS-1) { //Bas
+               //player = cells[abs][ord-1];
+               ORDNEXT += 1;
            }
        }
 
@@ -476,7 +503,7 @@ public class Labyrinthe extends View implements SensorEventListener {
        else {
            long curTime = System.currentTimeMillis();
            long lastUpdate = al.get(0);
-           if ((curTime - lastUpdate) > 1000) {
+           if ((curTime - lastUpdate) > 500) {
                long diffTime = (curTime - lastUpdate);
                lastUpdate = curTime;
                al.remove(0);
