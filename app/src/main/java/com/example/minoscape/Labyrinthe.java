@@ -373,38 +373,38 @@ public class Labyrinthe extends View implements SensorEventListener {
 
         if(diffabs != 0) {
             if(diffabs < 0) {
-                if(cells[ABSCURRENT][ORDCURRENT].topWall) {
+                if(!cells[ABSCURRENT][ORDCURRENT].rightWall) {
                     ABSCURRENT = ABSNEXT;
                 }
-                /*else {
+                else {
                     ABSNEXT= ABSCURRENT;
-                }*/
+                }
             }
             else if(diffabs > 0) {
-                if(cells[ABSCURRENT][ORDCURRENT].bottomWall) {
+                if(!cells[ABSCURRENT][ORDCURRENT].leftWall) {
                     ABSCURRENT = ABSNEXT;
                 }
-                /*else {
+                else {
                     ABSNEXT= ABSCURRENT;
-                }*/
+                }
             }
         }
         if(difford != 0) {
             if(difford < 0) {
-                if(cells[ABSCURRENT][ORDCURRENT].rightWall) {
+                if(!cells[ABSCURRENT][ORDCURRENT].bottomWall) {
                     ORDCURRENT = ORDNEXT;
                 }
-                /*else {
+                else {
                     ORDNEXT = ORDCURRENT;
-                }*/
+                }
             }
             else if(difford>0) {
-                if(cells[ABSCURRENT][ORDCURRENT].leftWall) {
+                if(!cells[ABSCURRENT][ORDCURRENT].topWall) {
                     ORDCURRENT = ORDNEXT;
                 }
-                /*else {
+                else {
                     ORDNEXT = ORDCURRENT;
-                }*/
+                }
             }
 
         }
@@ -490,15 +490,16 @@ public class Labyrinthe extends View implements SensorEventListener {
                        lastY = (float) mapentry.getValue();
                    }
                    lastValues.remove(lastX, lastY);
-                   lastValues.put(x, y);
 
+                  // lastValues.put(x, y);
+                    lastValues.put(0f,0f);
                    deltaX = Math.abs(lastX - x);
                    deltaY = Math.abs(lastY - y);
 
-                   if (deltaX < 0.5) {
+                   if (deltaX < 1) {
                        deltaX = 0;
                    }
-                   if (deltaY < 0.5) {
+                   if (deltaY < 1) {
                        deltaY = 0;
                    }
                    System.out.println("Les valeurs sont x =" + x + "    y =" + y);
