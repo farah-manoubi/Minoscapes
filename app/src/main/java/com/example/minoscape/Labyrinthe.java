@@ -374,26 +374,39 @@ public class Labyrinthe extends View implements SensorEventListener {
         if(diffabs != 0) {
             if(diffabs < 0) {
                 if(cells[ABSCURRENT][ORDCURRENT].topWall) {
-                    ORDCURRENT = ORDNEXT;
+                    ABSCURRENT = ABSNEXT;
                 }
+                /*else {
+                    ABSNEXT= ABSCURRENT;
+                }*/
             }
             else if(diffabs > 0) {
                 if(cells[ABSCURRENT][ORDCURRENT].bottomWall) {
-                    ORDCURRENT = ORDNEXT;
-                }
-            }
-        }
-        else if(difford != 0) {
-            if(difford < 0) {
-                if(cells[ABSCURRENT][ORDCURRENT].rightWall) {
                     ABSCURRENT = ABSNEXT;
                 }
+                /*else {
+                    ABSNEXT= ABSCURRENT;
+                }*/
+            }
+        }
+        if(difford != 0) {
+            if(difford < 0) {
+                if(cells[ABSCURRENT][ORDCURRENT].rightWall) {
+                    ORDCURRENT = ORDNEXT;
+                }
+                /*else {
+                    ORDNEXT = ORDCURRENT;
+                }*/
             }
             else if(difford>0) {
                 if(cells[ABSCURRENT][ORDCURRENT].leftWall) {
-                    ABSCURRENT = ABSNEXT;
+                    ORDCURRENT = ORDNEXT;
                 }
+                /*else {
+                    ORDNEXT = ORDCURRENT;
+                }*/
             }
+
         }
 
         hiro = getResizedBitmap(hiro, (int)((player.col+1)*cellSize-(margin*2)), (int)((player.row+1)*cellSize-(margin)));
@@ -488,7 +501,6 @@ public class Labyrinthe extends View implements SensorEventListener {
                    if (deltaY < 0.5) {
                        deltaY = 0;
                    }
-
                    System.out.println("Les valeurs sont x =" + x + "    y =" + y);
                    System.out.println("LastX = " + lastX + "      LastY = " + lastY);
                    System.out.println("DeltaX = " + deltaX + "      DeltaY =" + deltaY);
