@@ -51,8 +51,10 @@ public class Labyrinthe extends View implements SensorEventListener {
     private HashMap<Float, Float> lastValues = new HashMap<Float, Float>();
     private float lastX, lastY, deltaX, deltaY;
     private ArrayList<Long> al = new ArrayList<Long>();
-    private static int ABS;
-    private static int ORD;
+    private static int ABSCURRENT;
+    private static int ORDCURRENT;
+    private static int ABSNEXT;
+    private static int ORDNEXT;
     int currentX, currentY;
 
 
@@ -162,8 +164,10 @@ public class Labyrinthe extends View implements SensorEventListener {
        Boolean bool = false;
 
        player = cells[0][0]; //AJOUT
-       ABS = player.getCol();
-       ORD = player.getRow();
+       ABSCURRENT = player.getCol();
+       ORDCURRENT = player.getRow();
+       ABSNEXT = player.getCol();
+       ORDNEXT = player.getRow();
        hm.put(0,0);
        exit = cells[COLS-1][ROWS-1]; //AJOUT
        Random rdm1 = new Random();
@@ -364,8 +368,36 @@ public class Labyrinthe extends View implements SensorEventListener {
 
         float margin = cellSize/10;
 
+        int diffabs = ABSCURRENT - ABSNEXT;
+        int difford = ORDCURRENT - ORDNEXT;
+
+        if(diffabs != 0) {
+            if(diffabs < 0) {
+                if(cells[ABSCURRENT][ORDCURRENT].topWall) {
+                    ORDCURRENT = ORDNEXT;
+                }
+            }
+            else if(diffabs > 0) {
+                if(cells[ABSCURRENT][ORDCURRENT].bottomWall) {
+                    ORDCURRENT = ORDNEXT;
+                }
+            }
+        }
+        else if(difford != 0) {
+            if(difford < 0) {
+                if(cells[ABSCURRENT][ORDCURRENT].rightWall) {
+                    ABSCURRENT = ABSNEXT;
+                }
+            }
+            else if(difford>0) {
+                if(cells[ABSCURRENT][ORDCURRENT].leftWall) {
+                    ABSCURRENT = ABSNEXT;
+                }
+            }
+        }
+
         hiro = getResizedBitmap(hiro, (int)((player.col+1)*cellSize-(margin*2)), (int)((player.row+1)*cellSize-(margin)));
-        canvas.drawBitmap(hiro, ABS*cellSize+margin, ORD*cellSize+margin, null);
+        canvas.drawBitmap(hiro, ABSCURRENT*cellSize+margin, ORDCURRENT*cellSize+margin, null);
 
         minotaur = getResizedBitmap(minotaur, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
         canvas.drawBitmap(minotaur,minos.col*cellSize+margin, minos.row*cellSize+margin, null);
@@ -394,28 +426,29 @@ public class Labyrinthe extends View implements SensorEventListener {
 
 
    private void moveImage(float deltaX, float deltaY, float x, float y, float lastX, float lastY) {
-       int abs = ABS;
-       int ord = ORD;
+       int abs = ABSCURRENT;
+       int ord = ORDCURRENT;
        if(deltaX != 0) {
            if(lastX - x < 0 && abs != COLS-1) { //droite
                //player = cells[abs+1][ord];
-               ABS += 1;
+               ABSNEXT += 1;
            }
            if(lastX - x > 0 && abs != 0) { //Gauche
                //player = cells[abs-1][ord];
-               ABS -= 1;
+               ABSNEXT -= 1;
            }
        }
        else if(deltaY != 0) {
            if(lastY - y < 0 && ord != ROWS-1) { //Haut
                //player = cells[abs][ord+1];
-               ORD += 1;
+               ORDNEXT += 1;
            }
            if(lastY - y > 0 && ord != 0) { //Bas
                //player = cells[abs][ord-1];
-               ORD -= 1;
+               ORDNEXT -= 1;
            }
        }
+
    }
 
 
@@ -461,13 +494,14 @@ public class Labyrinthe extends View implements SensorEventListener {
                    System.out.println("DeltaX = " + deltaX + "      DeltaY =" + deltaY);
 
                    try {
-                       System.out.println("Player[" + ABS + "][" + ORD + "]");
+                       System.out.println("Player[" + ABSCURRENT + "][" + ORDCURRENT + "]");
                    } catch (NullPointerException e) {
                        System.out.println("Le player n'existe pas");
                    }
 
                    System.out.println(" ");
                    this.moveImage(deltaX,deltaY, x, y, lastX, lastY);
+                   System.out.println("PlayerNEXT["+ ABSNEXT + "][" + ORDNEXT + "]");
 
                    invalidate();
 
