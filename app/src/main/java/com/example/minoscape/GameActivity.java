@@ -28,7 +28,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        sensorManager.registerListener(lab, sensorManager.getDefaultSensor( Sensor.TYPE_ACCELEROMETER ), 300000000);
+        sensorManager.registerListener(lab, sensorManager.getDefaultSensor( Sensor.TYPE_ACCELEROMETER ), SensorManager.SENSOR_DELAY_UI);
         
     }
 

@@ -328,6 +328,7 @@ public class Labyrinthe extends View implements SensorEventListener {
     }
 
     protected void onDraw(Canvas canvas){
+        super.onDraw(canvas);
         canvas.drawColor(Color.GRAY);
         int width=getWidth();
         int height=getHeight();
@@ -382,29 +383,29 @@ public class Labyrinthe extends View implements SensorEventListener {
         canvas.drawBitmap(coin4,coins4.col*cellSize+margin, coins4.row*cellSize+margin, null);
         canvas.drawBitmap(coin5,coins5.col*cellSize+margin, coins5.row*cellSize+margin, null);
 
-
         //System.out.println("Player[" + player.getCol() + "][" + player.getRow() + "]");
         //canvas.drawRect(player.col*cellSize+margin, player.row*cellSize+margin, (player.col+1)*cellSize-margin, (player.row+1)*cellSize-margin, playerPaint); //AJOUT
 
         //canvas.drawRect(exit.col*cellSize+margin, exit.row*cellSize+margin, (exit.col+1)*cellSize-margin, (exit.row+1)*cellSize-margin, exitPaint); //AJOUT
+        invalidate();
     }
 
 
 
 
    private void moveImage(float deltaX, float deltaY, float x, float y, float lastX, float lastY) {
-        int abs = ABS;
-        int ord = ORD;
-        if(deltaX != 0) {
-            if(lastX - x < 0 && abs != COLS-1) { //droite
-                //player = cells[abs+1][ord];
-                ABS += 1;
-            }
-            if(lastX - x > 0 && abs != 0) { //Gauche
-                //player = cells[abs-1][ord];
-                ABS -= 1;
-            }
-        }
+       int abs = ABS;
+       int ord = ORD;
+       if(deltaX != 0) {
+           if(lastX - x < 0 && abs != COLS-1) { //droite
+               //player = cells[abs+1][ord];
+               ABS += 1;
+           }
+           if(lastX - x > 0 && abs != 0) { //Gauche
+               //player = cells[abs-1][ord];
+               ABS -= 1;
+           }
+       }
        else if(deltaY != 0) {
            if(lastY - y < 0 && ord != ROWS-1) { //Haut
                //player = cells[abs][ord+1];
@@ -415,8 +416,6 @@ public class Labyrinthe extends View implements SensorEventListener {
                ORD -= 1;
            }
        }
-
-       //invalidate();
    }
 
 
