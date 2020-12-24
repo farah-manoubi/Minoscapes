@@ -9,11 +9,8 @@ import android.graphics.Paint;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Build;
-import android.os.Bundle;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -21,7 +18,6 @@ import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 import java.util.Stack;
@@ -39,23 +35,20 @@ public class Labyrinthe extends View implements SensorEventListener {
     private Paint wallPaint, playerPaint, exitPaint; //Ajout des 2 dernier
     private Random random;
 
-    private Bitmap hiro;
-
-    private Bitmap minotaur;
+    private Bitmap hiro, minotaur, heart;
 
     private Bitmap coin1, coin2, coin3, coin4, coin5;
-    private boolean Bcoin1 = true, Bcoin2 = true, Bcoin3 = true, Bcoin4 = true, Bcoin5 = true;
+    public static boolean Bcoin1 = true, Bcoin2 = true, Bcoin3 = true, Bcoin4 = true, Bcoin5 = true, BMinos=true;
 
 
 
     private HashMap<Float, Float> lastValues = new HashMap<Float, Float>();
     private float lastX, lastY, deltaX, deltaY;
     private ArrayList<Long> al = new ArrayList<Long>();
-    private static int ABSCURRENT;
-    private static int ORDCURRENT;
-    private static int ABSNEXT;
-    private static int ORDNEXT;
-    private TextView tv;
+    public static int ABSCURRENT, ORDCURRENT, ABSNEXT, ORDNEXT;
+    public static int piece = 0;
+    public static int vie = 3;
+
     int currentX, currentY;
 
 
@@ -74,6 +67,7 @@ public class Labyrinthe extends View implements SensorEventListener {
         coin3 = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
         coin4 = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
         coin5 = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
+        heart = BitmapFactory.decodeResource(getResources(), R.drawable.heart);
 
         random = new Random();
 
@@ -410,6 +404,8 @@ public class Labyrinthe extends View implements SensorEventListener {
 
         }
 
+
+
         hiro = getResizedBitmap(hiro, (int)((player.col+1)*cellSize-(margin*2)), (int)((player.row+1)*cellSize-(margin)));
         canvas.drawBitmap(hiro, ABSCURRENT*cellSize+margin, ORDCURRENT*cellSize+margin, null);
 
@@ -417,21 +413,37 @@ public class Labyrinthe extends View implements SensorEventListener {
         canvas.drawBitmap(minotaur,minos.col*cellSize+margin, minos.row*cellSize+margin, null);
         //Ici "minos" est une cellule ou il y a le minotaure
 
-        if(ABSCURRENT == coins1.col && ORDCURRENT == coins1.row) {
+        if(ABSCURRENT == coins1.col && ORDCURRENT == coins1.row && Bcoin1) {
             Bcoin1 = false;
+            piece+=1;
         }
-        if(ABSCURRENT == coins2.col && ORDCURRENT == coins2.row) {
+        if(ABSCURRENT == coins2.col && ORDCURRENT == coins2.row && Bcoin2) {
             Bcoin2 = false;
+            piece+=1;
         }
-        if(ABSCURRENT == coins3.col && ORDCURRENT == coins3.row) {
+        if(ABSCURRENT == coins3.col && ORDCURRENT == coins3.row && Bcoin3) {
             Bcoin3 = false;
+            piece+=1;
         }
-        if(ABSCURRENT == coins4.col && ORDCURRENT == coins4.row) {
+        if(ABSCURRENT == coins4.col && ORDCURRENT == coins4.row && Bcoin4) {
             Bcoin4 = false;
+            piece+=1;
         }
-        if(ABSCURRENT == coins5.col && ORDCURRENT == coins5.row) {
+        if(ABSCURRENT == coins5.col && ORDCURRENT == coins5.row && Bcoin5) {
             Bcoin5 = false;
+            piece+=1;
         }
+        if(ABSCURRENT == minos.col && ORDCURRENT == minos.row && BMinos) {
+
+            if(vie > 0) {
+                BMinos = false;
+                vie -= 1;
+            }
+        }
+        else if(ABSCURRENT != minos.col || ORDCURRENT != minos.row && vie<3) {
+            BMinos = true;
+        }
+
 
         if(Bcoin1) {
             coin1 = getResizedBitmap(coin1, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
@@ -455,13 +467,30 @@ public class Labyrinthe extends View implements SensorEventListener {
         }
 
 
+        Paint paint = new Paint();
+
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(35);
+        canvas.drawBitmap(coin1,460, 615, null);
+        canvas.drawText(" : " + nbPiece(), 500, 650, paint);
+
+        heart = getResizedBitmap(heart, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
+        canvas.drawBitmap(heart,120, 615, null);
+        canvas.drawText(" : " + nbVie(), 160, 650, paint);
+
+
         //System.out.println("Player[" + player.getCol() + "][" + player.getRow() + "]");
         //canvas.drawRect(player.col*cellSize+margin, player.row*cellSize+margin, (player.col+1)*cellSize-margin, (player.row+1)*cellSize-margin, playerPaint); //AJOUT
 
         //canvas.drawRect(exit.col*cellSize+margin, exit.row*cellSize+margin, (exit.col+1)*cellSize-margin, (exit.row+1)*cellSize-margin, exitPaint); //AJOUT
-        invalidate();
+
         invalidate();
     }
+
+    public int nbPiece() {
+        return piece;
+    }
+    public int nbVie() { return vie;}
 
 
 

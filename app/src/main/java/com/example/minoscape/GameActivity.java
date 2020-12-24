@@ -9,6 +9,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.TextView;
 
 import static androidx.core.content.ContextCompat.getSystemService;
 
@@ -17,19 +18,21 @@ public class GameActivity extends AppCompatActivity {
     private SensorManager sensorManager = null;
     private Labyrinthe lab;
     Bitmap hiro;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         lab = new Labyrinthe(this, hiro);
         setContentView(R.layout.activity_game);
         sensorManager = (SensorManager) getSystemService( SENSOR_SERVICE );
+       // TextView tv = (TextView) findViewById(R.id.piece);
+        //tv.setText("Pieces " + lab.nbPiece());
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         sensorManager.registerListener(lab, sensorManager.getDefaultSensor( Sensor.TYPE_LINEAR_ACCELERATION ), SensorManager.SENSOR_DELAY_UI);
-        
     }
 
     @Override
@@ -47,5 +50,7 @@ public class GameActivity extends AppCompatActivity {
         // Start the activity
         startActivity(i);
     }
+
+
 
 }
