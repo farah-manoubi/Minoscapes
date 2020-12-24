@@ -26,7 +26,7 @@ import static android.content.Context.SENSOR_SERVICE;
 import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 import static androidx.core.content.ContextCompat.getSystemService;
 
-public class Labyrinthe extends View implements SensorEventListener {
+public class Labyrinthe extends View implements SensorEventListener{
     private Cell[][] cells;
     private Cell player, exit, minos, coins1, coins2, coins3, coins4, coins5; //Ajout
     private static final int COLS=14, ROWS=9;
@@ -48,7 +48,7 @@ public class Labyrinthe extends View implements SensorEventListener {
     public static int ABSCURRENT, ORDCURRENT, ABSNEXT, ORDNEXT;
     public static int piece = 0;
     public static int vie = 3;
-
+    public boolean stop = false;
     int currentX, currentY;
 
 
@@ -70,6 +70,7 @@ public class Labyrinthe extends View implements SensorEventListener {
         heart = BitmapFactory.decodeResource(getResources(), R.drawable.heart);
 
         random = new Random();
+
 
         creatMaze();
     }
@@ -471,12 +472,14 @@ public class Labyrinthe extends View implements SensorEventListener {
 
         paint.setColor(Color.BLACK);
         paint.setTextSize(35);
-        canvas.drawBitmap(coin1,460, 615, null);
-        canvas.drawText(" : " + nbPiece(), 500, 650, paint);
+        canvas.drawBitmap(coin1,510, 615, null);
+        canvas.drawText(" : " + nbPiece(), 550, 650, paint);
 
         heart = getResizedBitmap(heart, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
-        canvas.drawBitmap(heart,120, 615, null);
-        canvas.drawText(" : " + nbVie(), 160, 650, paint);
+        canvas.drawBitmap(heart,80, 615, null);
+        canvas.drawText(" : " + nbVie(), 120, 650, paint);
+
+        canvas.drawText(EThread.minute + "min  " + EThread.seconde + "sec", 275, 650, paint);
 
 
         //System.out.println("Player[" + player.getCol() + "][" + player.getRow() + "]");
@@ -558,19 +561,19 @@ public class Labyrinthe extends View implements SensorEventListener {
                    if (deltaY < 1) {
                        deltaY = 0;
                    }
-                   System.out.println("Les valeurs sont x =" + x + "    y =" + y);
-                   System.out.println("LastX = " + lastX + "      LastY = " + lastY);
-                   System.out.println("DeltaX = " + deltaX + "      DeltaY =" + deltaY);
+                  // System.out.println("Les valeurs sont x =" + x + "    y =" + y);
+                   //System.out.println("LastX = " + lastX + "      LastY = " + lastY);
+                   //System.out.println("DeltaX = " + deltaX + "      DeltaY =" + deltaY);
 
                    try {
-                       System.out.println("Player[" + ABSCURRENT + "][" + ORDCURRENT + "]");
+                     //  System.out.println("Player[" + ABSCURRENT + "][" + ORDCURRENT + "]");
                    } catch (NullPointerException e) {
-                       System.out.println("Le player n'existe pas");
+                       //System.out.println("Le player n'existe pas");
                    }
 
-                   System.out.println(" ");
+                   //System.out.println(" ");
                    this.moveImage(deltaX,deltaY, x, y, lastX, lastY);
-                   System.out.println("PlayerNEXT["+ ABSNEXT + "][" + ORDNEXT + "]");
+                   //System.out.println("PlayerNEXT["+ ABSNEXT + "][" + ORDNEXT + "]");
 
                    invalidate();
 
@@ -587,4 +590,6 @@ public class Labyrinthe extends View implements SensorEventListener {
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
+
+
 }

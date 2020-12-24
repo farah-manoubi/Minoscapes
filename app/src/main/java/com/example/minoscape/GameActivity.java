@@ -18,6 +18,8 @@ public class GameActivity extends AppCompatActivity {
     private SensorManager sensorManager = null;
     private Labyrinthe lab;
     Bitmap hiro;
+    Thread t;
+    EThread et = new EThread();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,11 @@ public class GameActivity extends AppCompatActivity {
         lab = new Labyrinthe(this, hiro);
         setContentView(R.layout.activity_game);
         sensorManager = (SensorManager) getSystemService( SENSOR_SERVICE );
+        EThread.stop=false;
+        t = new Thread(et);
+        t.start();
+        EThread.minute = 0;
+        EThread.seconde = 0;
        // TextView tv = (TextView) findViewById(R.id.piece);
         //tv.setText("Pieces " + lab.nbPiece());
     }
