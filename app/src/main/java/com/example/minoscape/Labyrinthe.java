@@ -28,14 +28,14 @@ import static androidx.core.content.ContextCompat.getSystemService;
 
 public class Labyrinthe extends View implements SensorEventListener{
     private Cell[][] cells;
-    private Cell player, exit, minos, coins1, coins2, coins3, coins4, coins5; //Ajout
+    private Cell player, exit, minos, coins1, coins2, coins3, coins4, coins5, door; //Ajout
     private static final int COLS=14, ROWS=9;
     private static final float WALL_THICKNESS=4;
     private float cellSize, hMargin, vMargin;
     private Paint wallPaint, playerPaint, exitPaint; //Ajout des 2 dernier
     private Random random;
 
-    private Bitmap hiro, minotaur, heart;
+    private Bitmap hiro, minotaur, heart, porte;
 
     private Bitmap coin1, coin2, coin3, coin4, coin5;
     public static boolean Bcoin1 = true, Bcoin2 = true, Bcoin3 = true, Bcoin4 = true, Bcoin5 = true, BMinos=true;
@@ -68,6 +68,7 @@ public class Labyrinthe extends View implements SensorEventListener{
         coin4 = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
         coin5 = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
         heart = BitmapFactory.decodeResource(getResources(), R.drawable.heart);
+        porte = BitmapFactory.decodeResource(getResources(), R.drawable.door);
 
         random = new Random();
 
@@ -160,12 +161,14 @@ public class Labyrinthe extends View implements SensorEventListener{
        Boolean bool = false;
 
        player = cells[0][0]; //AJOUT
+       door = cells[COLS-1][ROWS-1];
        ABSCURRENT = player.getCol();
        ORDCURRENT = player.getRow();
        ABSNEXT = player.getCol();
        ORDNEXT = player.getRow();
        hm.put(0,0);
-       exit = cells[COLS-1][ROWS-1]; //AJOUT
+       hm.put(COLS-1,ROWS-1);
+       //exit = cells[COLS-1][ROWS-1]; //AJOUT
        Random rdm1 = new Random();
        int x = rdm1.nextInt(COLS-1);
         int y = rdm1.nextInt(ROWS-1);
@@ -466,6 +469,11 @@ public class Labyrinthe extends View implements SensorEventListener{
             coin5 = getResizedBitmap(coin5, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
             canvas.drawBitmap(coin5,coins5.col*cellSize+margin, coins5.row*cellSize+margin, null);
         }
+        if(piece==5) {
+            porte = getResizedBitmap(porte, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
+            canvas.drawBitmap(porte,door.col*cellSize+margin, door.row*cellSize+margin, null);
+        }
+
 
 
         Paint paint = new Paint();
