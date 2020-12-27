@@ -54,7 +54,8 @@ public class BreakActivity extends AppCompatActivity {
         Labyrinthe.Bcoin3 = true;
         Labyrinthe.Bcoin4 = true;
         Labyrinthe.Bcoin5 = true;
-        Labyrinthe.BMinos=true;*/
+        Labyrinthe.BMinos=true;
+        Labyrinthe.Bdoor=false;*/
         Labyrinthe.ABSCURRENT = 0;
         Labyrinthe.ORDCURRENT = 0;
         Labyrinthe.ABSNEXT = 0;

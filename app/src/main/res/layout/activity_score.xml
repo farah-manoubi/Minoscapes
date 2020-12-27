@@ -4,55 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ScoreActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/highScore1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bienvenue à Minoscape"
-        android:textSize="30sp"
+        android:text="Hello World"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.225" />
+        app:layout_constraintVertical_bias="0.304" />
 
-    <Button
-        android:id="@+id/Game"
+    <TextView
+        android:id="@+id/highScore2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="game"
-        android:text="Lancer jeu"
+        android:text=""
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/highScore1"
+        app:layout_constraintVertical_bias="0.084" />
+
+    <TextView
+        android:id="@+id/highScore3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/highScore2"
+        app:layout_constraintVertical_bias="0.102" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="back"
+        android:text="Back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.25" />
-
-    <Button
-        android:id="@+id/Regle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="rules"
-        android:text="Règles du jeu"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Game"
-        app:layout_constraintVertical_bias="0.069" />
-
-    <Button
-        android:id="@+id/highScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="highScore"
-        android:text="Meilleurs scores"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Regle"
-        app:layout_constraintVertical_bias="0.097" />
-
+        app:layout_constraintTop_toBottomOf="@+id/highScore3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -39,8 +39,8 @@ public class Labyrinthe extends View implements SensorEventListener{
 
     private Bitmap hiro, minotaur, heart, porte;
 
-    private Bitmap coin1, coin2, coin3, coin4, coin5;
-    public static boolean Bcoin1 = true, Bcoin2 = true, Bcoin3 = true, Bcoin4 = true, Bcoin5 = true, BMinos=true;
+    private Bitmap coin1, coin2, coin3, coin4, coin5, coinPara;
+    public static boolean Bcoin1 = true, Bcoin2 = true, Bcoin3 = true, Bcoin4 = true, Bcoin5 = true, BMinos=true, Bdoor = false;
 
 
 
@@ -65,12 +65,13 @@ public class Labyrinthe extends View implements SensorEventListener{
         hiro = BitmapFactory.decodeResource(getResources(), R.drawable.hiro);
         minotaur = BitmapFactory.decodeResource(getResources(), R.drawable.minotaur);
         coin1 = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
-        coin2 = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
+       /*coin2 = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
         coin3 = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
         coin4 = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
-        coin5 = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
+        coin5 = BitmapFactory.decodeResource(getResources(), R.drawable.coin);*/
         heart = BitmapFactory.decodeResource(getResources(), R.drawable.heart);
         porte = BitmapFactory.decodeResource(getResources(), R.drawable.door);
+        coinPara = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
 
         random = new Random();
 
@@ -163,8 +164,8 @@ public class Labyrinthe extends View implements SensorEventListener{
        Boolean bool = false;
 
        player = cells[0][0]; //AJOUT
-        door = cells[COLS-1][ROWS-1]; //door = cells[COLS-1][ROWS-1]; (ON A MODIFIER ICI !!!!!!!)
-        //coins1 = cells[0][1]; //A SUPPIMEEEEEEER ! (ON A MODIFIER ICI !!!!!!!)
+        door = cells[0][2]; //door = cells[COLS-1][ROWS-1]; (ON A MODIFIER ICI !!!!!!!)
+        coins1 = cells[0][1]; //A SUPPIMEEEEEEER ! (ON A MODIFIER ICI !!!!!!!)
        ABSCURRENT = player.getCol();
        ORDCURRENT = player.getRow();
        ABSNEXT = player.getCol();
@@ -172,7 +173,7 @@ public class Labyrinthe extends View implements SensorEventListener{
        hm.put(0,0);
        hm.put(COLS-1,ROWS-1);
        //exit = cells[COLS-1][ROWS-1]; //AJOUT
-       Random rdm1 = new Random();
+       /*Random rdm1 = new Random();
        int x = rdm1.nextInt(COLS-1);
         int y = rdm1.nextInt(ROWS-1);
 
@@ -288,7 +289,7 @@ public class Labyrinthe extends View implements SensorEventListener{
                 coins5 = cells[x][y];
                 hm.put(x,y);
             }
-        }
+        }*/
 
         /*coins1 = cells[rdm1.nextInt(COLS-1)][rdm1.nextInt(ROWS-1)];
         coins2 = cells[rdm1.nextInt(COLS-1)][rdm1.nextInt(ROWS-1)];
@@ -416,15 +417,15 @@ public class Labyrinthe extends View implements SensorEventListener{
         hiro = getResizedBitmap(hiro, (int)((player.col+1)*cellSize-(margin*2)), (int)((player.row+1)*cellSize-(margin)));
         canvas.drawBitmap(hiro, ABSCURRENT*cellSize+margin, ORDCURRENT*cellSize+margin, null);
 
-        minotaur = getResizedBitmap(minotaur, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
-        canvas.drawBitmap(minotaur,minos.col*cellSize+margin, minos.row*cellSize+margin, null);
+        //minotaur = getResizedBitmap(minotaur, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
+        //canvas.drawBitmap(minotaur,minos.col*cellSize+margin, minos.row*cellSize+margin, null);
         //Ici "minos" est une cellule ou il y a le minotaure
 
         if(ABSCURRENT == coins1.col && ORDCURRENT == coins1.row && Bcoin1) {
             Bcoin1 = false;
             piece+=1;
         }
-        if(ABSCURRENT == coins2.col && ORDCURRENT == coins2.row && Bcoin2) {
+        /*if(ABSCURRENT == coins2.col && ORDCURRENT == coins2.row && Bcoin2) {
             Bcoin2 = false;
             piece+=1;
         }
@@ -449,14 +450,14 @@ public class Labyrinthe extends View implements SensorEventListener{
         }
         else if(ABSCURRENT != minos.col || ORDCURRENT != minos.row && vie<3) {
             BMinos = true;
-        }
+        }*/
 
 
         if(Bcoin1) {
             coin1 = getResizedBitmap(coin1, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
             canvas.drawBitmap(coin1,coins1.col*cellSize+margin, coins1.row*cellSize+margin, null);
         }
-        if(Bcoin2) {
+       /* if(Bcoin2) {
             coin2 = getResizedBitmap(coin2, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
             canvas.drawBitmap(coin2,coins2.col*cellSize+margin, coins2.row*cellSize+margin, null);
         }
@@ -471,10 +472,11 @@ public class Labyrinthe extends View implements SensorEventListener{
         if(Bcoin5) {
             coin5 = getResizedBitmap(coin5, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
             canvas.drawBitmap(coin5,coins5.col*cellSize+margin, coins5.row*cellSize+margin, null);
-        }
-        if(piece==5) { //piece==5 (ON A MOFIFIER ICI !!!!!!)
+        }*/
+        if(piece==1) { //piece==5 (ON A MOFIFIER ICI !!!!!!)
             porte = getResizedBitmap(porte, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
             canvas.drawBitmap(porte,door.col*cellSize+margin, door.row*cellSize+margin, null);
+            Bdoor = true;
         }
 
 
@@ -483,7 +485,8 @@ public class Labyrinthe extends View implements SensorEventListener{
 
         paint.setColor(Color.BLACK);
         paint.setTextSize(35);
-        canvas.drawBitmap(coin1,510, 615, null);
+        coinPara = getResizedBitmap(coinPara, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
+        canvas.drawBitmap(coinPara,510, 615, null);
         canvas.drawText(" : " + nbPiece(), 550, 650, paint);
 
         heart = getResizedBitmap(heart, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
@@ -584,7 +587,7 @@ public class Labyrinthe extends View implements SensorEventListener{
 
                    //System.out.println(" ");
 
-                   if(ABSCURRENT == 0 && ORDCURRENT == 1) {
+                   if(ABSCURRENT == 0 && ORDCURRENT == 2 && Bdoor) {
                        GameActivity.openDialog();
                    }
                    else {

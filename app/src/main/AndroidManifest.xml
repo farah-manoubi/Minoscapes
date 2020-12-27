@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.minoscape">
 
-    <uses-feature android:name="android.hardware.sensor.accelerometer"
-        android:required="true"
-        />
+    <uses-feature
+        android:name="android.hardware.sensor.accelerometer"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Minoscape">
-        <activity android:name=".BreakActivity"></activity>
+        <activity android:name=".ScoreActivity"></activity>
+        <activity android:name=".BreakActivity" />
         <activity android:name=".RulesActivity" />
         <activity android:name=".GameActivity" />
         <activity android:name=".MainActivity">
@@ -23,7 +25,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

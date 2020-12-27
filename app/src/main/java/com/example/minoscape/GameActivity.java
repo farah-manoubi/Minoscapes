@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -28,6 +29,7 @@ import static androidx.core.content.ContextCompat.getSystemService;
 
 public class GameActivity extends AppCompatActivity {
 
+    private static DataBase db;
     private SensorManager sensorManager = null;
     private Labyrinthe lab;
     Bitmap hiro;
@@ -56,6 +58,7 @@ public class GameActivity extends AppCompatActivity {
         EThread.seconde = 0;
         //move();
         dialog = new Dialog(this);
+        db = new DataBase(this);
         mContext = this;
     }
 
@@ -92,6 +95,19 @@ public class GameActivity extends AppCompatActivity {
 
     public static void restart(View view) {
         // Create an intent for the activity
+        Labyrinthe.Bcoin1 = true;
+        Labyrinthe.Bcoin2 = true;
+        Labyrinthe.Bcoin3 = true;
+        Labyrinthe.Bcoin4 = true;
+        Labyrinthe.Bcoin5 = true;
+        Labyrinthe.BMinos=true;
+        Labyrinthe.Bdoor = false;
+        Labyrinthe.ABSCURRENT = 0;
+        Labyrinthe.ORDCURRENT = 0;
+        Labyrinthe.ABSNEXT = 0;
+        Labyrinthe.ORDNEXT = 0;
+        Labyrinthe.vie = 3;
+        Labyrinthe.piece = 0;
         Intent i = new Intent(mContext, GameActivity.class);
 
         // Start the activity
@@ -104,6 +120,26 @@ public class GameActivity extends AppCompatActivity {
 
     public static void openDialog() {
         EThread.stop = true;
+        String time = "00:" + EThread.minute + ":" + EThread.seconde;
+        Cursor res = db.getdata();
+        if(res.getCount()==0){
+            db.insertData(1, time);
+        }
+        else {
+            String lastTime = "";
+            while(res.moveToNext()){
+                lastTime = res.getString(1);
+            }
+            if(time.equals(lastTime)) {}
+            else {
+                int level = res.getCount()+1;
+
+                db.insertData(level, time);
+            }
+
+
+        }
+
 
         dialog.setContentView(R.layout.dialog_layout);
 

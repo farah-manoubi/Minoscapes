@@ -32,4 +32,12 @@ public class MainActivity extends AppCompatActivity {
         // Start the activity
         startActivity(i);
     }
+
+    public void highScore(View view) {
+        // Create an intent for the activity
+        Intent i = new Intent(this, ScoreActivity.class);
+
+        // Start the activity
+        startActivity(i);
+    }
 }
