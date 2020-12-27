@@ -164,8 +164,8 @@ public class Labyrinthe extends View implements SensorEventListener{
        Boolean bool = false;
 
        player = cells[0][0];
-        door = cells[COLS-1][ROWS-1]; //door = cells[COLS-1][ROWS-1]; (ON A MODIFIER ICI !!!!!!!)
-        //coins1 = cells[0][1]; //A SUPPIMEEEEEEER ! (ON A MODIFIER ICI !!!!!!!)
+        door = cells[0][3]; //door = cells[COLS-1][ROWS-1]; (ON A MODIFIER ICI !!!!!!!)
+        coins1 = cells[0][2]; //A SUPPIMEEEEEEER ! (ON A MODIFIER ICI !!!!!!!)
        ABSCURRENT = player.getCol();
        ORDCURRENT = player.getRow();
        ABSNEXT = player.getCol();
@@ -197,7 +197,7 @@ public class Labyrinthe extends View implements SensorEventListener{
         }*/
         minos = cells[0][1];
         bool = false;
-        while(bool==false) {
+        /*while(bool==false) {
             if(hm.containsKey(x)) {
                 if(hm.get(x)==y) {
                     x = rdm1.nextInt(COLS-1);
@@ -214,7 +214,7 @@ public class Labyrinthe extends View implements SensorEventListener{
                 coins1 = cells[x][y];
                 hm.put(x,y);
             }
-        }
+        }*/
         bool = false;
         while(bool==false) {
             if(hm.containsKey(x)) {
@@ -588,7 +588,7 @@ public class Labyrinthe extends View implements SensorEventListener{
 
                    //System.out.println(" ");
 
-                   if(ABSCURRENT == COLS-1 && ORDCURRENT == ROWS-1 && Bdoor) {
+                   if(ABSCURRENT == 0 && ORDCURRENT == 3 && Bdoor) {
                        GameActivity.openWinDialog();
                    }
                    if(vie==0) {

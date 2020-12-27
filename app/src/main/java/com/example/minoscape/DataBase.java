@@ -79,9 +79,9 @@ public class DataBase extends SQLiteOpenHelper {
 
     }
 
-    public Cursor getLevel () {
+    public Cursor getTop3 () {
         SQLiteDatabase DB = this.getWritableDatabase();
-        Cursor cursor = DB.rawQuery("Select COUNT(*) from Score", null);
+        Cursor cursor = DB.rawQuery("Select * from Score order by time asc limit 3", null);
         return cursor;
     }
 }

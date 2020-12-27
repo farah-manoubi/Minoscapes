@@ -146,11 +146,11 @@ public class GameActivity extends AppCompatActivity {
 
         dialog.setContentView(R.layout.dialog_win_layout);
 
-        Button reset = dialog.findViewById(R.id.reset);
-        Button menu = dialog.findViewById(R.id.menuP);
+        Button reset = dialog.findViewById(R.id.restart);
+        Button menu = dialog.findViewById(R.id.menuP2);
 
-        reset = (Button) dialog.findViewById(R.id.reset);
-        menu = (Button) dialog.findViewById(R.id.menuP);
+        reset = (Button) dialog.findViewById(R.id.restart);
+        menu = (Button) dialog.findViewById(R.id.menuP2);
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,8 +173,8 @@ public class GameActivity extends AppCompatActivity {
         EThread.stop = true;
         dialog.setContentView(R.layout.dialog_lose_layout);
 
-        Button reset = dialog.findViewById(R.id.reset);
-        Button menu = dialog.findViewById(R.id.menuP);
+        Button reset = dialog.findViewById(R.id.restart);
+        Button menu = dialog.findViewById(R.id.menuP2);
 
         reset = (Button) dialog.findViewById(R.id.restart);
         menu = (Button) dialog.findViewById(R.id.menuP2);

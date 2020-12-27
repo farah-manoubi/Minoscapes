@@ -20,19 +20,22 @@ public class ScoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_score);
         db = new DataBase(this);
         score1 = (TextView) findViewById(R.id.highScore1);
-        score2 = (TextView) findViewById(R.id.highScore2);
-        score3 = (TextView) findViewById(R.id.highScore3);
 
-        Cursor res = db.getdata();
+        Cursor res = db.getTop3();
         if(res.getCount()==0){
             score1.setText("Vous n'avez pas fait de partie pour l'instant");
-            score2.setText("");
-            score3.setText("");
         }
         else {
+            StringBuffer buffer = new StringBuffer();
+            int i = 1;
             while(res.moveToNext()){
-                score1.setText("Level : " + res.getString(0) + "    Time : " + res.getString(1));
+                buffer.append("Top " + i+"\n");
+                buffer.append("Level :"+res.getString(0)+"\n");
+                buffer.append("Time :"+res.getString(1)+"\n\n");
+                i++;
             }
+
+            score1.setText(buffer.toString());
         }
 
     }
