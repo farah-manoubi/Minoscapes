@@ -16,7 +16,6 @@ public class EThread implements Runnable {
                     minute+=1;
                     seconde = 0;
                 }
-                //System.out.println(minute + "min  " + seconde + "sec");
 
             }
 

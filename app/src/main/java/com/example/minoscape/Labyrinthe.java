@@ -1,5 +1,6 @@
 package com.example.minoscape;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -25,6 +26,7 @@ import java.util.Stack;
 import static android.content.Context.SENSOR_SERVICE;
 import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 import static androidx.core.content.ContextCompat.getSystemService;
+import static androidx.core.content.ContextCompat.startActivity;
 
 public class Labyrinthe extends View implements SensorEventListener{
     private Cell[][] cells;
@@ -161,7 +163,8 @@ public class Labyrinthe extends View implements SensorEventListener{
        Boolean bool = false;
 
        player = cells[0][0]; //AJOUT
-       door = cells[COLS-1][ROWS-1];
+        door = cells[COLS-1][ROWS-1]; //door = cells[COLS-1][ROWS-1]; (ON A MODIFIER ICI !!!!!!!)
+        //coins1 = cells[0][1]; //A SUPPIMEEEEEEER ! (ON A MODIFIER ICI !!!!!!!)
        ABSCURRENT = player.getCol();
        ORDCURRENT = player.getRow();
        ABSNEXT = player.getCol();
@@ -462,14 +465,14 @@ public class Labyrinthe extends View implements SensorEventListener{
             canvas.drawBitmap(coin3,coins3.col*cellSize+margin, coins3.row*cellSize+margin, null);
         }
         if(Bcoin4) {
-            coin4 = getResizedBitmap(coin4, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
+            coin4 = getResizedBitmap(coin4, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)* cellSize-margin));
             canvas.drawBitmap(coin4,coins4.col*cellSize+margin, coins4.row*cellSize+margin, null);
         }
         if(Bcoin5) {
             coin5 = getResizedBitmap(coin5, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
             canvas.drawBitmap(coin5,coins5.col*cellSize+margin, coins5.row*cellSize+margin, null);
         }
-        if(piece==5) {
+        if(piece==5) { //piece==5 (ON A MOFIFIER ICI !!!!!!)
             porte = getResizedBitmap(porte, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
             canvas.drawBitmap(porte,door.col*cellSize+margin, door.row*cellSize+margin, null);
         }
@@ -580,7 +583,13 @@ public class Labyrinthe extends View implements SensorEventListener{
                    }
 
                    //System.out.println(" ");
-                   this.moveImage(deltaX,deltaY, x, y, lastX, lastY);
+
+                   if(ABSCURRENT == 0 && ORDCURRENT == 1) {
+                       GameActivity.openDialog();
+                   }
+                   else {
+                       this.moveImage(deltaX, deltaY, x, y, lastX, lastY);
+                   }
                    //System.out.println("PlayerNEXT["+ ABSNEXT + "][" + ORDNEXT + "]");
 
                    invalidate();
@@ -599,5 +608,9 @@ public class Labyrinthe extends View implements SensorEventListener{
 
     }
 
+    public void finishGame() {
+        if(Labyrinthe.ABSCURRENT == 0 && Labyrinthe.ORDCURRENT==1) {
 
+        }
+    }
 }
