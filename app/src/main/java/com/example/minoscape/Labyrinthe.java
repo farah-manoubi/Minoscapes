@@ -205,25 +205,6 @@ public class Labyrinthe extends View implements SensorEventListener{
                 hm.put(x,y);
             }
 
-
-
-
-            /*if(hm.containsKey(x)) {
-                if(hm.get(x)==y) {
-                    x = rdm1.nextInt(COLS-1);
-                    y = rdm1.nextInt(ROWS-1);
-                }
-                else {
-                    bool = true;
-                    minos = cells[x][y];
-                    hm.put(x,y);
-                }
-            }
-            else {
-                bool = true;
-                minos = cells[x][y];
-                hm.put(x,y);
-            }*/
         }
         //minos = cells[0][1];
         occuped = false;
@@ -255,22 +236,6 @@ public class Labyrinthe extends View implements SensorEventListener{
                 hm.put(x,y);
             }
 
-            /*if(hm.containsKey(x)) {
-                if(hm.get(x)==y) {
-                    x = rdm1.nextInt(COLS-1);
-                    y = rdm1.nextInt(ROWS-1);
-                }
-                else {
-                    bool = true;
-                    coins1 = cells[x][y];
-                    hm.put(x,y);
-                }
-            }
-            else {
-                bool = true;
-                coins1 = cells[x][y];
-                hm.put(x,y);
-            }*/
         }
         occuped = false;
         bool = false;
@@ -300,22 +265,7 @@ public class Labyrinthe extends View implements SensorEventListener{
                 hm.put(x,y);
             }
 
-            /*if(hm.containsKey(x)) {
-                if(hm.get(x)==y) {
-                    x = rdm1.nextInt(COLS-1);
-                    y = rdm1.nextInt(ROWS-1);
-                }
-                else {
-                    bool = true;
-                    coins2 = cells[x][y];
-                    hm.put(x,y);
-                }
-            }
-            else {
-                bool = true;
-                coins2 = cells[x][y];
-                hm.put(x,y);
-            }*/
+
         }
         occuped = false;
         bool = false;
@@ -345,22 +295,6 @@ public class Labyrinthe extends View implements SensorEventListener{
                 hm.put(x,y);
             }
 
-            /*if(hm.containsKey(x)) {
-                if(hm.get(x)==y) {
-                    x = rdm1.nextInt(COLS-1);
-                    y = rdm1.nextInt(ROWS-1);
-                }
-                else {
-                    bool = true;
-                    coins3 = cells[x][y];
-                    hm.put(x,y);
-                }
-            }
-            else {
-                bool = true;
-                coins3 = cells[x][y];
-                hm.put(x,y);
-            }*/
         }
         occuped = false;
         bool = false;
@@ -390,22 +324,6 @@ public class Labyrinthe extends View implements SensorEventListener{
                 hm.put(x,y);
             }
 
-            /*if(hm.containsKey(x)) {
-                if(hm.get(x)==y) {
-                    x = rdm1.nextInt(COLS-1);
-                    y = rdm1.nextInt(ROWS-1);
-                }
-                else {
-                    bool = true;
-                    coins4 = cells[x][y];
-                    hm.put(x,y);
-                }
-            }
-            else {
-                bool = true;
-                coins4 = cells[x][y];
-                hm.put(x,y);
-            }*/
         }
         occuped = false;
         bool = false;
@@ -435,23 +353,7 @@ public class Labyrinthe extends View implements SensorEventListener{
                 hm.put(x,y);
             }
 
-            /*if(hm.containsKey(x)) {
-                if(hm.get(x)==y) {
-                    x = rdm1.nextInt(COLS-1);
-                    y = rdm1.nextInt(ROWS-1);
 
-                }
-                else {
-                    bool = true;
-                    coins5 = cells[x][y];
-                    hm.put(x,y);
-                }
-            }
-            else {
-                bool = true;
-                coins5 = cells[x][y];
-                hm.put(x,y);
-            }*/
         }
 
         /*coins1 = cells[rdm1.nextInt(COLS-1)][rdm1.nextInt(ROWS-1)];
@@ -511,9 +413,10 @@ public class Labyrinthe extends View implements SensorEventListener{
         return icon;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
-        canvas.drawColor(Color.GRAY);
+        canvas.drawColor(Color.parseColor("#C49FF1"));  //#CEC1E7
         int width=getWidth();
         int height=getHeight();
 
@@ -787,13 +690,5 @@ public class Labyrinthe extends View implements SensorEventListener{
    }
 
     @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-    }
-
-    public void finishGame() {
-        if(Labyrinthe.ABSCURRENT == 0 && Labyrinthe.ORDCURRENT==1) {
-
-        }
-    }
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 }
