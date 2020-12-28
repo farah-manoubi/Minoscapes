@@ -36,7 +36,6 @@ public class DataBase extends SQLiteOpenHelper {
         }
     }
 
-
     public Boolean updateData(int level, String time) {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

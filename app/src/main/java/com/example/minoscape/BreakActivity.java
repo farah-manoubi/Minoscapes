@@ -8,12 +8,9 @@ import android.view.View;
 import android.widget.TextView;
 
 public class BreakActivity extends AppCompatActivity {
-
     Thread t;
     EThread et = new EThread();
     TextView coeur, piece, time;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

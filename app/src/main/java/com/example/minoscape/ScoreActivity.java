@@ -13,7 +13,6 @@ public class ScoreActivity extends AppCompatActivity {
     TextView score1, score2, score3;
     private DataBase db;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

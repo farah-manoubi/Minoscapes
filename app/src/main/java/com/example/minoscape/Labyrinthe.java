@@ -36,9 +36,7 @@ public class Labyrinthe extends View implements SensorEventListener{
     private float cellSize, hMargin, vMargin;
     private Paint wallPaint, playerPaint, exitPaint; //Ajout des 2 dernier
     private Random random;
-
     private Bitmap hiro, minotaur, heart, porte;
-
     private Bitmap coin1, coin2, coin3, coin4, coin5, coinPara;
     public static boolean Bcoin1 = true, Bcoin2 = true, Bcoin3 = true, Bcoin4 = true, Bcoin5 = true, BMinos=true, Bdoor = false;
 

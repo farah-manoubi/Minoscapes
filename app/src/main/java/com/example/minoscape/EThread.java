@@ -3,7 +3,6 @@ package com.example.minoscape;
 public class EThread implements Runnable {
 
     public EThread() {}
-
     public static boolean stop = false;
     public static int seconde = 0, minute;
 

@@ -18,7 +18,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity {
-
     private static DataBase db;
     private SensorManager sensorManager = null;
     private Labyrinthe lab;
@@ -32,7 +31,6 @@ public class GameActivity extends AppCompatActivity {
     public static Dialog dialog;
     FloatingActionButton button;
     private static Context mContext;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

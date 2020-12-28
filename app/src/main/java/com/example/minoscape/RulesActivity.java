@@ -13,7 +13,6 @@ public class RulesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rules);
     }
-
     public void back(View view) {
         // Create an intent for the activity
         Intent i = new Intent(this, MainActivity.class);
