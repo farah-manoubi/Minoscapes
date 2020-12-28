@@ -31,6 +31,7 @@ public class GameActivity extends AppCompatActivity {
     public static Dialog dialog;
     FloatingActionButton button;
     private static Context mContext;
+    private Button parametre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class GameActivity extends AppCompatActivity {
         dialog = new Dialog(this);
         db = new DataBase(this);
         mContext = this;
+
     }
 
     @Override
@@ -75,6 +77,13 @@ public class GameActivity extends AppCompatActivity {
         sensorManager.unregisterListener( lab );
     }
 
+    public void parametre(View v) {
+        // Create an intent for the activity
+        Intent i = new Intent(this, SettingsActivity.class);
+
+        // Start the activity
+        startActivity(i);
+    }
 
     public void pause(View view) {
 
