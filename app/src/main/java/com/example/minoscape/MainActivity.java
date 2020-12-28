@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Is the button now checked?
                if(debutant.isChecked()) {
-                   Labyrinthe.COLS = 6;
+                   Labyrinthe.COLS = 8;
                    Labyrinthe.ROWS = 4;
                }
                if(intermediaire.isChecked()) {

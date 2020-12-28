@@ -180,11 +180,14 @@ public class Labyrinthe extends View implements SensorEventListener{
 
         while(bool==false) {
 
-            /*if(hm.containsKey(x)) {
+            if(hm.containsKey(x)) {
                 for(Map.Entry m: hm.entrySet()) {
-                    if(hm.get(m.getKey()) == y) {
-                        occuped = true;
+                    if((int)m.getKey() == x) {
+                        if(hm.get(x) == y) {
+                            occuped = true;
+                        }
                     }
+
                 }
                 if(occuped) {
                     x = rdm1.nextInt(COLS-1);
@@ -200,12 +203,12 @@ public class Labyrinthe extends View implements SensorEventListener{
                 bool = true;
                 minos = cells[x][y];
                 hm.put(x,y);
-            }*/
+            }
 
 
 
 
-            if(hm.containsKey(x)) {
+            /*if(hm.containsKey(x)) {
                 if(hm.get(x)==y) {
                     x = rdm1.nextInt(COLS-1);
                     y = rdm1.nextInt(ROWS-1);
@@ -220,13 +223,23 @@ public class Labyrinthe extends View implements SensorEventListener{
                 bool = true;
                 minos = cells[x][y];
                 hm.put(x,y);
-            }
+            }*/
         }
         //minos = cells[0][1];
+        occuped = false;
         bool = false;
         while(bool==false) {
+
+
             if(hm.containsKey(x)) {
-                if(hm.get(x)==y) {
+                for(Map.Entry m: hm.entrySet()) {
+                    if((int)m.getKey() == x) {
+                        if(hm.get(x) == y) {
+                            occuped = true;
+                        }
+                    }
+                }
+                if(occuped) {
                     x = rdm1.nextInt(COLS-1);
                     y = rdm1.nextInt(ROWS-1);
                 }
@@ -241,11 +254,37 @@ public class Labyrinthe extends View implements SensorEventListener{
                 coins1 = cells[x][y];
                 hm.put(x,y);
             }
+
+            /*if(hm.containsKey(x)) {
+                if(hm.get(x)==y) {
+                    x = rdm1.nextInt(COLS-1);
+                    y = rdm1.nextInt(ROWS-1);
+                }
+                else {
+                    bool = true;
+                    coins1 = cells[x][y];
+                    hm.put(x,y);
+                }
+            }
+            else {
+                bool = true;
+                coins1 = cells[x][y];
+                hm.put(x,y);
+            }*/
         }
+        occuped = false;
         bool = false;
         while(bool==false) {
+
             if(hm.containsKey(x)) {
-                if(hm.get(x)==y) {
+                for(Map.Entry m: hm.entrySet()) {
+                    if((int)m.getKey() == x) {
+                        if(hm.get(x) == y) {
+                            occuped = true;
+                        }
+                    }
+                }
+                if(occuped) {
                     x = rdm1.nextInt(COLS-1);
                     y = rdm1.nextInt(ROWS-1);
                 }
@@ -260,11 +299,37 @@ public class Labyrinthe extends View implements SensorEventListener{
                 coins2 = cells[x][y];
                 hm.put(x,y);
             }
+
+            /*if(hm.containsKey(x)) {
+                if(hm.get(x)==y) {
+                    x = rdm1.nextInt(COLS-1);
+                    y = rdm1.nextInt(ROWS-1);
+                }
+                else {
+                    bool = true;
+                    coins2 = cells[x][y];
+                    hm.put(x,y);
+                }
+            }
+            else {
+                bool = true;
+                coins2 = cells[x][y];
+                hm.put(x,y);
+            }*/
         }
+        occuped = false;
         bool = false;
         while(bool==false) {
+
             if(hm.containsKey(x)) {
-                if(hm.get(x)==y) {
+                for(Map.Entry m: hm.entrySet()) {
+                    if((int)m.getKey() == x) {
+                        if(hm.get(x) == y) {
+                            occuped = true;
+                        }
+                    }
+                }
+                if(occuped) {
                     x = rdm1.nextInt(COLS-1);
                     y = rdm1.nextInt(ROWS-1);
                 }
@@ -279,11 +344,37 @@ public class Labyrinthe extends View implements SensorEventListener{
                 coins3 = cells[x][y];
                 hm.put(x,y);
             }
+
+            /*if(hm.containsKey(x)) {
+                if(hm.get(x)==y) {
+                    x = rdm1.nextInt(COLS-1);
+                    y = rdm1.nextInt(ROWS-1);
+                }
+                else {
+                    bool = true;
+                    coins3 = cells[x][y];
+                    hm.put(x,y);
+                }
+            }
+            else {
+                bool = true;
+                coins3 = cells[x][y];
+                hm.put(x,y);
+            }*/
         }
+        occuped = false;
         bool = false;
         while(bool==false) {
+
             if(hm.containsKey(x)) {
-                if(hm.get(x)==y) {
+                for(Map.Entry m: hm.entrySet()) {
+                    if((int)m.getKey() == x) {
+                        if(hm.get(x) == y) {
+                            occuped = true;
+                        }
+                    }
+                }
+                if(occuped) {
                     x = rdm1.nextInt(COLS-1);
                     y = rdm1.nextInt(ROWS-1);
                 }
@@ -298,10 +389,53 @@ public class Labyrinthe extends View implements SensorEventListener{
                 coins4 = cells[x][y];
                 hm.put(x,y);
             }
+
+            /*if(hm.containsKey(x)) {
+                if(hm.get(x)==y) {
+                    x = rdm1.nextInt(COLS-1);
+                    y = rdm1.nextInt(ROWS-1);
+                }
+                else {
+                    bool = true;
+                    coins4 = cells[x][y];
+                    hm.put(x,y);
+                }
+            }
+            else {
+                bool = true;
+                coins4 = cells[x][y];
+                hm.put(x,y);
+            }*/
         }
+        occuped = false;
         bool = false;
         while(bool==false) {
+
             if(hm.containsKey(x)) {
+                for(Map.Entry m: hm.entrySet()) {
+                    if((int)m.getKey() == x) {
+                        if(hm.get(x) == y) {
+                            occuped = true;
+                        }
+                    }
+                }
+                if(occuped) {
+                    x = rdm1.nextInt(COLS-1);
+                    y = rdm1.nextInt(ROWS-1);
+                }
+                else {
+                    bool = true;
+                    coins5 = cells[x][y];
+                    hm.put(x,y);
+                }
+            }
+            else {
+                bool = true;
+                coins5 = cells[x][y];
+                hm.put(x,y);
+            }
+
+            /*if(hm.containsKey(x)) {
                 if(hm.get(x)==y) {
                     x = rdm1.nextInt(COLS-1);
                     y = rdm1.nextInt(ROWS-1);
@@ -317,7 +451,7 @@ public class Labyrinthe extends View implements SensorEventListener{
                 bool = true;
                 coins5 = cells[x][y];
                 hm.put(x,y);
-            }
+            }*/
         }
 
         /*coins1 = cells[rdm1.nextInt(COLS-1)][rdm1.nextInt(ROWS-1)];

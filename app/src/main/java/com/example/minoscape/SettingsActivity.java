@@ -31,7 +31,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(debutant.isChecked()) {
-                    Labyrinthe.COLS = 6;
+                    Labyrinthe.COLS = 8;
                     Labyrinthe.ROWS = 4;
                 }
                 if(intermediaire.isChecked()) {
@@ -61,22 +61,6 @@ public class SettingsActivity extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    public void startGame() {
-        if(debutant.isChecked()) {
-            Labyrinthe.COLS = 6;
-            Labyrinthe.ROWS = 4;
-        }
-        if(intermediaire.isChecked()) {
-            Labyrinthe.COLS = 10;
-            Labyrinthe.ROWS = 5;
-        }
-        if(expert.isChecked()) {
-            Labyrinthe.COLS = 14;
-            Labyrinthe.ROWS = 9;
-        }
-        game();
     }
 
     public void menu(View v) {
