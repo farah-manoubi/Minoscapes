@@ -74,8 +74,6 @@ public class Labyrinthe extends View implements SensorEventListener{
         coinPara = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
 
         random = new Random();
-
-
         creatMaze();
     }
 
@@ -84,7 +82,6 @@ public class Labyrinthe extends View implements SensorEventListener{
         hiro = BitmapFactory.decodeResource(getResources(), R.drawable.hiro);
 
     }
-
 
     private Cell getNeighbour(Cell cell) {
         ArrayList<Cell> neighbours = new ArrayList<>();
@@ -416,7 +413,7 @@ public class Labyrinthe extends View implements SensorEventListener{
     @RequiresApi(api = Build.VERSION_CODES.O)
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
-        canvas.drawColor(Color.parseColor("#C49FF1"));  //#CEC1E7
+        canvas.drawColor(Color.parseColor("#8960C3"));  //#CEC1E7
         int width=getWidth();
         int height=getHeight();
 
@@ -574,6 +571,8 @@ public class Labyrinthe extends View implements SensorEventListener{
         canvas.drawText(" : " + nbVie(), 120, 650, paint);
 
         canvas.drawText(EThread.minute + "min  " + EThread.seconde + "sec", 275, 650, paint);
+
+        //canvas.drawText("Niveau " + GameActivity.NIVEAU, 300, 10, paint);
 
 
         //System.out.println("Player[" + player.getCol() + "][" + player.getRow() + "]");

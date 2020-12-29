@@ -32,6 +32,8 @@ public class GameActivity extends AppCompatActivity {
     FloatingActionButton button;
     private static Context mContext;
     private Button parametre;
+    public static int NIVEAU;
+    public static Boolean pause = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +54,12 @@ public class GameActivity extends AppCompatActivity {
         Labyrinthe.ORDNEXT = 0;
         Labyrinthe.vie = 3;
         Labyrinthe.piece = 0;
-
         EThread.stop=false;
         t = new Thread(et);
         t.start();
         EThread.minute = 0;
         EThread.seconde = 0;
-        //move();
+
         dialog = new Dialog(this);
         db = new DataBase(this);
         mContext = this;
@@ -69,12 +70,25 @@ public class GameActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         sensorManager.registerListener(lab, sensorManager.getDefaultSensor( Sensor.TYPE_LINEAR_ACCELERATION ), SensorManager.SENSOR_DELAY_UI);
+
+        if(pause) {
+            EThread.stop = false;
+            t = new Thread(et);
+
+            int sec = EThread.seconde;
+            int min = EThread.minute;
+            t.start();
+            EThread.seconde = sec;
+            EThread.minute = min;
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         sensorManager.unregisterListener( lab );
+        pause=true;
+        EThread.stop = true;
     }
 
     public void parametre(View v) {
@@ -152,9 +166,9 @@ public class GameActivity extends AppCompatActivity {
                 sec = "0" + EThread.seconde;
             }
 
-
             String time = "00:" + min + ":" + sec;
             db.insertData(1, time, difficulty);
+
         }
         else {
             String min = "" + EThread.minute;
@@ -235,12 +249,4 @@ public class GameActivity extends AppCompatActivity {
 
         dialog.show();
     }
-
-
-
-
-
-
-
-
 }

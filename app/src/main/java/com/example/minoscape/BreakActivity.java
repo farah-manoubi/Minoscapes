@@ -18,6 +18,7 @@ public class BreakActivity extends AppCompatActivity {
         setContentView(R.layout.activity_break);
         EThread.stop = true;
         t = new Thread(et);
+        GameActivity.pause = false;
         coeur = (TextView) findViewById(R.id.coeur);
         piece = (TextView) findViewById(R.id.piece);
         time = (TextView) findViewById(R.id.time);

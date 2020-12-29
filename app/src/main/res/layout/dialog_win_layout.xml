@@ -5,11 +5,12 @@
     android:layout_width="350dp"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="#F4F1EB">
+    android:background="#EDB554">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#EDB554"
         app:cardCornerRadius="20dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout

@@ -25,6 +25,8 @@ public class SettingsActivity extends AppCompatActivity {
         RadioButton debutant = (RadioButton)findViewById(R.id.debutant);
         RadioButton intermediaire = (RadioButton)findViewById(R.id.intermediaire);
         RadioButton expert = (RadioButton)findViewById(R.id.Expert);
+        GameActivity.pause = false;
+
         t = new Thread(et);
 
         start.setOnClickListener(new View.OnClickListener() {

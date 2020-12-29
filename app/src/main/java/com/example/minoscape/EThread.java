@@ -11,7 +11,7 @@ public class EThread implements Runnable {
             while(!stop) {
                 Thread.sleep(1000);
                 seconde+=1;
-                if(seconde>60) {
+                if(seconde>59) {
                     minute+=1;
                     seconde = 0;
                 }

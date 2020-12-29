@@ -103,6 +103,10 @@ public class MainActivity extends AppCompatActivity {
                     Labyrinthe.COLS = 14;
                     Labyrinthe.ROWS = 9;
                 }
+                if(!debutant.isChecked() && !intermediaire.isChecked() && !expert.isChecked()) {
+                    Labyrinthe.COLS = 8;
+                    Labyrinthe.ROWS = 4;
+                }
                 game(v);
             }
         });
