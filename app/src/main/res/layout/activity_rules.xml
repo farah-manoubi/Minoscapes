@@ -4,19 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#281053"
     tools:context=".RulesActivity">
+
     <TextView
         android:id="@+id/regle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Règles du jeu :"
+        android:textColor="#FF6E00"
+        android:textIsSelectable="true"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/explication"
@@ -24,16 +28,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="23dp"
         android:layout_marginLeft="23dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="23dp"
         android:layout_marginRight="23dp"
-        android:text="Bienvenu sur MINO’Scape ! "
-        android:textSize="18sp"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Bienvenu sur MINO’Scape ! "
+        android:textColor="#FF6E00"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regle"
-        app:layout_constraintVertical_bias="0.064" />
+        app:layout_constraintTop_toBottomOf="@+id/regle" />
 
     <Button
         android:id="@+id/retour"
@@ -41,11 +46,11 @@
         android:layout_height="wrap_content"
         android:onClick="back"
         android:text="Retour"
+        app:backgroundTint="#D65F05"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/explication"
-        app:layout_constraintVertical_bias="0.899" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/textView2"
@@ -53,33 +58,34 @@
         android:layout_height="106dp"
         android:layout_marginStart="23dp"
         android:layout_marginLeft="23dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="23dp"
         android:layout_marginRight="23dp"
-        android:text="Vous venez de vous introduire dans le château du terrible Minotaure. Vous vous rendez compte que c’est un véritable labyrinthe pour s’y retrouver…"
-        android:textSize="18sp"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/retour"
+        android:text="Vous venez de vous introduire dans le château du terrible Minotaure. Vous vous rendez compte que c’est un véritable labyrinthe pour s’y retrouver…"
+        android:textColor="#FF6E00"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.73"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/explication"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintTop_toBottomOf="@+id/explication" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="338dp"
-        android:layout_height="97dp"
+        android:layout_width="331dp"
+        android:layout_height="92dp"
         android:layout_marginStart="23dp"
         android:layout_marginLeft="23dp"
         android:layout_marginEnd="23dp"
         android:layout_marginRight="23dp"
-        android:text="Votre objectif est de ramassez les pièces sans que vous vous fassiez prendre par les soldats du Minotaure, sinon ils vous tueront…"
-        android:textSize="18sp"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/retour"
+        android:text="Votre objectif est de ramassez les pièces sans que vous vous fassiez prendre par les soldats du Minotaure, sinon ils vous tueront…"
+        android:textColor="#FF6E00"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.558"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.085" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView4"
@@ -89,13 +95,13 @@
         android:layout_marginLeft="23dp"
         android:layout_marginEnd="23dp"
         android:layout_marginRight="23dp"
-        android:text="Et si vous êtes vivant jusqu’à cette étape, échappez-vous par la porte de sortie !"
-        android:textSize="18sp"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/retour"
+        android:text="Et si vous êtes vivant jusqu’à cette étape, échappez-vous par la porte de sortie !"
+        android:textColor="#FF6E00"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.173" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

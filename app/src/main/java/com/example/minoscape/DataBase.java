@@ -15,7 +15,8 @@ public class DataBase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase DB) {
-        DB.execSQL("create Table Score(level INTEGER primary key, time TIME)");
+        //DB.execSQL("create Table Score(level INTEGER primary key, time TIME)");
+        DB.execSQL("create Table Score(level INTEGER primary key, time TIME, difficulty TEXT)");
     }
 
     @Override
@@ -23,11 +24,12 @@ public class DataBase extends SQLiteOpenHelper {
         DB.execSQL("drop Table if exists Score");
     }
 
-    public Boolean insertData(int level, String time) {
+    public Boolean insertData(int level, String time, String difficulty) {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("level", level);
         contentValues.put("time", time);
+        contentValues.put("difficulty", difficulty);
         long result= DB.insert("Score", null, contentValues);
         if(result==-1){
             return false;
@@ -36,10 +38,11 @@ public class DataBase extends SQLiteOpenHelper {
         }
     }
 
-    public Boolean updateData(int level, String time) {
+    public Boolean updateData(int level, String time, String difficulty) {
         SQLiteDatabase DB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("time", time);
+        contentValues.put("difficulty", difficulty);
         Cursor cursor = DB.rawQuery("Select * from Score where level = ?", new String[]{Integer.toString(level)});
         if (cursor.getCount() > 0) {
             long result = DB.update("Score", contentValues, "level=?",new String[]{Integer.toString(level)});
@@ -75,7 +78,6 @@ public class DataBase extends SQLiteOpenHelper {
         SQLiteDatabase DB = this.getWritableDatabase();
         Cursor cursor = DB.rawQuery("Select * from Score", null);
         return cursor;
-
     }
 
     public Cursor getTop3 () {

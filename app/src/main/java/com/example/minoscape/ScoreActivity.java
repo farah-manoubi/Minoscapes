@@ -25,12 +25,13 @@ public class ScoreActivity extends AppCompatActivity {
             score1.setText("Vous n'avez pas fait de partie pour l'instant");
         }
         else {
-            StringBuffer buffer = new StringBuffer();
+            StringBuffer buffer = new StringBuffer(); //double clic, musique ?
             int i = 1;
             while(res.moveToNext()){
                 buffer.append("Top " + i+"\n");
-                buffer.append("Level :"+res.getString(0)+"\n");
-                buffer.append("Time :"+res.getString(1)+"\n\n");
+                buffer.append("Niveau : "+res.getString(0)+"\n");
+                buffer.append("Temps : "+res.getString(1)+"\n");
+                buffer.append("Difficulté : "+res.getString(2)+"\n\n");
                 i++;
             }
 

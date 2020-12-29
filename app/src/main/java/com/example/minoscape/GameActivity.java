@@ -129,22 +129,55 @@ public class GameActivity extends AppCompatActivity {
         EThread.stop = true;
 
         Cursor res = db.getdata();
+
+        String difficulty = "";
+        if(Labyrinthe.COLS == 8 && Labyrinthe.ROWS == 4) {
+            difficulty = "Debutant";
+        }
+        if(Labyrinthe.COLS == 10 && Labyrinthe.ROWS == 5) {
+            difficulty = "Intermediaire";
+        }
+        if(Labyrinthe.COLS == 14 && Labyrinthe.ROWS == 9) {
+            difficulty = "Expert";
+        }
+
         if(res.getCount()==0){
-            String time = "00:" + EThread.minute + ":" + EThread.seconde;
-            db.insertData(1, time);
+            String min = "" + EThread.minute;
+            String sec = "" + EThread.seconde;
+
+            if(EThread.minute<10) {
+                min = "0" + EThread.minute;
+            }
+            if(EThread.seconde<10) {
+                sec = "0" + EThread.seconde;
+            }
+
+
+            String time = "00:" + min + ":" + sec;
+            db.insertData(1, time, difficulty);
         }
         else {
+            String min = "" + EThread.minute;
+            String sec = "" + EThread.seconde;
+            String sec1 = "" + (EThread.seconde-1);
+
+            if(EThread.minute<10) {
+                min = "0" + EThread.minute;
+            }
+            if(EThread.seconde<10) {
+                sec = "0" + EThread.seconde;
+            }
             String lastTime = "";
             while(res.moveToNext()){
                 lastTime = res.getString(1);
             }
-            String time = "00:" + EThread.minute + ":" + EThread.seconde;
-            String time1 = "00:" + EThread.minute + ":" + (EThread.seconde-1);
+            String time = "00:" + min + ":" + sec;
+            String time1 = "00:" + min + ":" + sec1;
             if(time.equals(lastTime) || time1.equals(lastTime)) {}
             else {
                 int level = res.getCount()+1;
 
-                db.insertData(level, time);
+                db.insertData(level, time, difficulty);
             }
 
 
