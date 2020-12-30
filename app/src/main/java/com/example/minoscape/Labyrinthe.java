@@ -41,6 +41,16 @@ public class Labyrinthe extends View implements SensorEventListener{
     public static int piece = 0;
     public static int vie = 3;
 
+
+    private static ArrayList<Float> gravity = new ArrayList<Float>();
+    private final float alpha = 0.8f;
+    private float g1, g2, l1, l2;
+    private static ArrayList<Float> linear = new ArrayList<Float>();
+
+
+    private float[] linear_acceleration;
+
+
     public Labyrinthe (Context context, AttributeSet attrs){
         super(context, attrs);
         wallPaint= new Paint();
@@ -57,6 +67,9 @@ public class Labyrinthe extends View implements SensorEventListener{
         porte = BitmapFactory.decodeResource(getResources(), R.drawable.door);
         coinPara = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
         random = new Random();
+        //gravity[0] = 9.8f;
+        //gravity[1] = 9.8f;
+
         creatMaze();
     }
 
@@ -545,21 +558,44 @@ public class Labyrinthe extends View implements SensorEventListener{
        int ord = ORDCURRENT;
 
        if(deltaX != 0) {
-           if(lastX - x < 0 && abs != COLS-1) { //droite
+           if(lastX - x < -2 && abs != COLS-1) { //droite
                ABSNEXT += 1;
            }
-           if(lastX - x > 0 && abs != 0) { //Gauche
+           if(lastX - x > 2 && abs != 0) { //Gauche
                ABSNEXT -= 1;
            }
        }
        else if(deltaY != 0) {
-           if(lastY - y < 0 && ord != 0) { //Haut
+           if(lastY - y < -2 && ord != 0) { //Haut
                ORDNEXT -= 1;
            }
-           if(lastY - y > 0 && ord != ROWS-1) { //Bas
+           if(lastY - y > 2 && ord != ROWS-1) { //Bas
                ORDNEXT += 1;
            }
        }
+   }
+
+
+   private void move(float deltaX, float deltaY,  float x, float y, float lastX, float lastY) {
+       int abs = ABSCURRENT;
+       int ord = ORDCURRENT;
+
+        if(deltaX != 0) {
+            if(lastX - x < 0 && ord != ROWS-1) {
+                ORDNEXT += 1;
+            }
+            if(lastX - x > 0 && ord != 0) {
+                ORDNEXT -= 1;
+            }
+        }
+        else if(deltaY!=0) {
+            if(lastY - y < 0 && abs != COLS-1) {
+                ABSNEXT +=1;
+            }
+            if(lastY - y > 0 && abs != 0) {
+                ABSNEXT -=1;
+            }
+        }
    }
 
 
@@ -569,6 +605,7 @@ public class Labyrinthe extends View implements SensorEventListener{
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onSensorChanged(SensorEvent event) {
+
        if(al.isEmpty()) {
            al.add((long) 0);
        }
@@ -586,7 +623,7 @@ public class Labyrinthe extends View implements SensorEventListener{
                Boolean bool = false;
 
                if (!lastValues.isEmpty()) {
-                   for (Map.Entry mapentry : lastValues.entrySet()) {
+                   /*for (Map.Entry mapentry : lastValues.entrySet()) { //VERSION 1
                        lastX = (float) mapentry.getKey();
                        lastY = (float) mapentry.getValue();
                    }
@@ -601,7 +638,58 @@ public class Labyrinthe extends View implements SensorEventListener{
                    }
                    if (deltaY < 1) {
                        deltaY = 0;
+                   }*/
+
+
+                   /*if(gravity.size()==0 && linear.size() == 0) { //VERSION TEST
+                       gravity.add(9.8f);
+                       gravity.add(9.8f);
+                       linear.add(0f);
+                       linear.add(0f);
                    }
+
+                   // Isolate the force of gravity with the low-pass filter.
+                   g1 = alpha * gravity.get(0) + (1 - alpha) * event.values[0];
+                   g2 = alpha * gravity.get(1) + (1 - alpha) * event.values[1];
+
+                   // Remove the gravity contribution with the high-pass filter.
+                   l1 = event.values[0] - g1;
+                   l2 = event.values[1] - g2;
+
+                   gravity.remove(0);
+                   gravity.remove(0);
+                   gravity.add(g1);
+                   gravity.add(g2);
+
+                   System.out.println("x = " +  l1 + "    y = " + l2);
+
+                   linear.remove(0);
+                   linear.remove(0);
+                   linear.add(l1);
+                   linear.add(l2); */
+
+                   System.out.println("x = " + event.values[0] + "   y = " + event.values[1]);
+
+                   for (Map.Entry mapentry : lastValues.entrySet()) {
+                       lastX = (float) mapentry.getKey();
+                       lastY = (float) mapentry.getValue();
+                   }
+
+                   lastValues.remove(lastX, lastY);
+                   lastValues.put(0f, 0f);
+
+                   deltaX = Math.abs(lastX - x);
+                   deltaY = Math.abs(lastY - y);
+
+                   if (deltaX < 1) {
+                       deltaX = 0;
+                   }
+                   if (deltaY < 1) {
+                       deltaY = 0;
+                   }
+
+
+
                    try {} catch (NullPointerException e) {}
 
                    if(ABSCURRENT == (COLS-1) && ORDCURRENT == (ROWS-1) && Bdoor) {
@@ -611,10 +699,12 @@ public class Labyrinthe extends View implements SensorEventListener{
                         GameActivity.openLoseDialog();
                    }
                    else {
-                       this.moveImage(deltaX, deltaY, x, y, lastX, lastY);
+                       //this.moveImage(deltaX, deltaY, x, y, lastX, lastY);
+                       move(deltaX, deltaY, x, y, lastX, lastY);
                    }
                    invalidate();
-               } else {
+               }
+               else {
                    lastValues.put(x, y);
                    System.out.println("Les valeurs sont x =" + x + "    y =" + y);
                }

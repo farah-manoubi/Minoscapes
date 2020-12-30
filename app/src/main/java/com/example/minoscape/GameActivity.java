@@ -64,7 +64,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        sensorManager.registerListener(lab, sensorManager.getDefaultSensor( Sensor.TYPE_LINEAR_ACCELERATION ), SensorManager.SENSOR_DELAY_UI);
+        sensorManager.registerListener(lab, sensorManager.getDefaultSensor( Sensor.TYPE_GYROSCOPE ), SensorManager.SENSOR_DELAY_UI); //Sensor.TYPE_LINEAR_ACCELERATION
         if(pause) {
             EThread.stop = false;
             t = new Thread(et);
