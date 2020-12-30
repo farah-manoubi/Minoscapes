@@ -523,7 +523,7 @@ public class Labyrinthe extends View implements SensorEventListener{
             coin5 = getResizedBitmap(coin5, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
             canvas.drawBitmap(coin5,coins5.col*cellSize+margin, coins5.row*cellSize+margin, null);
         }
-        if(piece==5) { //piece==5 (ON A MOFIFIER ICI !!!!!!)
+        if(piece==5) {
             porte = getResizedBitmap(porte, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
             canvas.drawBitmap(porte,door.col*cellSize+margin, door.row*cellSize+margin, null);
             Bdoor = true;
@@ -553,29 +553,6 @@ public class Labyrinthe extends View implements SensorEventListener{
      * @param x
      * @param y
      **/
-    private void moveImage(float deltaX, float deltaY, float x, float y, float lastX, float lastY) {
-       int abs = ABSCURRENT;
-       int ord = ORDCURRENT;
-
-       if(deltaX != 0) {
-           if(lastX - x < -2 && abs != COLS-1) { //droite
-               ABSNEXT += 1;
-           }
-           if(lastX - x > 2 && abs != 0) { //Gauche
-               ABSNEXT -= 1;
-           }
-       }
-       else if(deltaY != 0) {
-           if(lastY - y < -2 && ord != 0) { //Haut
-               ORDNEXT -= 1;
-           }
-           if(lastY - y > 2 && ord != ROWS-1) { //Bas
-               ORDNEXT += 1;
-           }
-       }
-   }
-
-
    private void move(float deltaX, float deltaY,  float x, float y, float lastX, float lastY) {
        int abs = ABSCURRENT;
        int ord = ORDCURRENT;
@@ -597,7 +574,6 @@ public class Labyrinthe extends View implements SensorEventListener{
             }
         }
    }
-
 
     /** Méthode pour utiliser l'accéléromètre
      * @param event
@@ -623,51 +599,6 @@ public class Labyrinthe extends View implements SensorEventListener{
                Boolean bool = false;
 
                if (!lastValues.isEmpty()) {
-                   /*for (Map.Entry mapentry : lastValues.entrySet()) { //VERSION 1
-                       lastX = (float) mapentry.getKey();
-                       lastY = (float) mapentry.getValue();
-                   }
-
-                   lastValues.remove(lastX, lastY);
-                   lastValues.put(0f,0f);
-                   deltaX = Math.abs(lastX - x);
-                   deltaY = Math.abs(lastY - y);
-
-                   if (deltaX < 1) {
-                       deltaX = 0;
-                   }
-                   if (deltaY < 1) {
-                       deltaY = 0;
-                   }*/
-
-
-                   /*if(gravity.size()==0 && linear.size() == 0) { //VERSION TEST
-                       gravity.add(9.8f);
-                       gravity.add(9.8f);
-                       linear.add(0f);
-                       linear.add(0f);
-                   }
-
-                   // Isolate the force of gravity with the low-pass filter.
-                   g1 = alpha * gravity.get(0) + (1 - alpha) * event.values[0];
-                   g2 = alpha * gravity.get(1) + (1 - alpha) * event.values[1];
-
-                   // Remove the gravity contribution with the high-pass filter.
-                   l1 = event.values[0] - g1;
-                   l2 = event.values[1] - g2;
-
-                   gravity.remove(0);
-                   gravity.remove(0);
-                   gravity.add(g1);
-                   gravity.add(g2);
-
-                   System.out.println("x = " +  l1 + "    y = " + l2);
-
-                   linear.remove(0);
-                   linear.remove(0);
-                   linear.add(l1);
-                   linear.add(l2); */
-
                    System.out.println("x = " + event.values[0] + "   y = " + event.values[1]);
 
                    for (Map.Entry mapentry : lastValues.entrySet()) {
@@ -677,7 +608,6 @@ public class Labyrinthe extends View implements SensorEventListener{
 
                    lastValues.remove(lastX, lastY);
                    lastValues.put(0f, 0f);
-
                    deltaX = Math.abs(lastX - x);
                    deltaY = Math.abs(lastY - y);
 
@@ -687,8 +617,6 @@ public class Labyrinthe extends View implements SensorEventListener{
                    if (deltaY < 1) {
                        deltaY = 0;
                    }
-
-
 
                    try {} catch (NullPointerException e) {}
 
@@ -699,7 +627,6 @@ public class Labyrinthe extends View implements SensorEventListener{
                         GameActivity.openLoseDialog();
                    }
                    else {
-                       //this.moveImage(deltaX, deltaY, x, y, lastX, lastY);
                        move(deltaX, deltaY, x, y, lastX, lastY);
                    }
                    invalidate();
