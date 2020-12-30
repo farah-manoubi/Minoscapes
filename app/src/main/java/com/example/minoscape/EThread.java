@@ -2,6 +2,8 @@ package com.example.minoscape;
 
 public class EThread implements Runnable {
 
+    /* Cette classe correspond au thread de notre application */
+
     public EThread() {}
     public static boolean stop = false;
     public static int seconde = 0, minute;
@@ -15,9 +17,7 @@ public class EThread implements Runnable {
                     minute+=1;
                     seconde = 0;
                 }
-
             }
-
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -1,6 +1,5 @@
 package com.example.minoscape;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -13,66 +12,50 @@ import android.hardware.SensorEventListener;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.TextView;
-
 import androidx.annotation.RequiresApi;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.Stack;
 
-import static android.content.Context.SENSOR_SERVICE;
-import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
-import static androidx.core.content.ContextCompat.getSystemService;
-import static androidx.core.content.ContextCompat.startActivity;
-
 public class Labyrinthe extends View implements SensorEventListener{
+
+    /* Cette classe permet de créer le labyrinthe avec les objets à l'intérieur */
+
     private Cell[][] cells;
-    private Cell player, exit, minos, coins1, coins2, coins3, coins4, coins5, door; //Ajout
-    //private static final int COLS=14, ROWS=9;
+    private Cell player, minos, coins1, coins2, coins3, coins4, coins5, door;
     public static int COLS, ROWS;
     private static final float WALL_THICKNESS=4;
     private float cellSize, hMargin, vMargin;
     private static float icon;
-    private Paint wallPaint, playerPaint, exitPaint; //Ajout des 2 dernier
+    private Paint wallPaint;
     private Random random;
     private Bitmap hiro, minotaur, heart, porte;
     private Bitmap coin1, coin2, coin3, coin4, coin5, coinPara;
     public static boolean Bcoin1 = true, Bcoin2 = true, Bcoin3 = true, Bcoin4 = true, Bcoin5 = true, BMinos=true, Bdoor = false;
-
-
-
     private HashMap<Float, Float> lastValues = new HashMap<Float, Float>();
     private float lastX, lastY, deltaX, deltaY;
     private ArrayList<Long> al = new ArrayList<Long>();
     public static int ABSCURRENT, ORDCURRENT, ABSNEXT, ORDNEXT;
     public static int piece = 0;
     public static int vie = 3;
-    public boolean stop = false;
-    int currentX, currentY;
-
-
 
     public Labyrinthe (Context context, AttributeSet attrs){
         super(context, attrs);
-
         wallPaint= new Paint();
         wallPaint.setColor(Color.BLACK);
         wallPaint.setStrokeWidth(WALL_THICKNESS);
-
         hiro = BitmapFactory.decodeResource(getResources(), R.drawable.hiro);
         minotaur = BitmapFactory.decodeResource(getResources(), R.drawable.minotaur);
         coin1 = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
-       coin2 = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
+        coin2 = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
         coin3 = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
         coin4 = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
         coin5 = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
         heart = BitmapFactory.decodeResource(getResources(), R.drawable.heart);
         porte = BitmapFactory.decodeResource(getResources(), R.drawable.door);
         coinPara = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
-
         random = new Random();
         creatMaze();
     }
@@ -83,6 +66,9 @@ public class Labyrinthe extends View implements SensorEventListener{
 
     }
 
+    /** Création des cellules du labyrinthe
+     * @param cell
+     **/
     private Cell getNeighbour(Cell cell) {
         ArrayList<Cell> neighbours = new ArrayList<>();
 
@@ -122,6 +108,10 @@ public class Labyrinthe extends View implements SensorEventListener{
         return null;
     }
 
+    /** Retirer les murs
+     * @param current
+     * @param next
+     **/
     private void removeWall(Cell current, Cell next) {
         if(current.col == next.col && current.row == next.row+1) {
             current.topWall = false;
@@ -144,11 +134,11 @@ public class Labyrinthe extends View implements SensorEventListener{
         }
     }
 
+    /** Mise en place du labyrinthe **/
     private void creatMaze(){
 
        Stack<Cell> stack = new Stack<>();
        Cell current, next;
-
        cells=new Cell[COLS][ROWS];
 
        for(int x=0; x<COLS; x++){
@@ -156,27 +146,22 @@ public class Labyrinthe extends View implements SensorEventListener{
                cells[x][y]=new Cell(x,y);
            }
        }
-
        HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
        Boolean bool = false;
-
         player = cells[0][0];
-        door = cells[COLS-1][ROWS-1]; //door = cells[COLS-1][ROWS-1]; (ON A MODIFIER ICI !!!!!!!)
-        // coins1 = cells[0][2]; //A SUPPIMEEEEEEER ! (ON A MODIFIER ICI !!!!!!!)
+        door = cells[COLS-1][ROWS-1];
         ABSCURRENT = player.getCol();
         ORDCURRENT = player.getRow();
         ABSNEXT = player.getCol();
         ORDNEXT = player.getRow();
         hm.put(0,0);
         hm.put(COLS-1,ROWS-1);
-        //exit = cells[COLS-1][ROWS-1]; //AJOUT
         Random rdm1 = new Random();
         int x = rdm1.nextInt(COLS-1);
         int y = rdm1.nextInt(ROWS-1);
         boolean occuped = false;
 
         while(bool==false) {
-
             if(hm.containsKey(x)) {
                 for(Map.Entry m: hm.entrySet()) {
                     if((int)m.getKey() == x) {
@@ -184,7 +169,6 @@ public class Labyrinthe extends View implements SensorEventListener{
                             occuped = true;
                         }
                     }
-
                 }
                 if(occuped) {
                     x = rdm1.nextInt(COLS-1);
@@ -201,14 +185,11 @@ public class Labyrinthe extends View implements SensorEventListener{
                 minos = cells[x][y];
                 hm.put(x,y);
             }
-
         }
-        //minos = cells[0][1];
+
         occuped = false;
         bool = false;
         while(bool==false) {
-
-
             if(hm.containsKey(x)) {
                 for(Map.Entry m: hm.entrySet()) {
                     if((int)m.getKey() == x) {
@@ -232,12 +213,11 @@ public class Labyrinthe extends View implements SensorEventListener{
                 coins1 = cells[x][y];
                 hm.put(x,y);
             }
-
         }
+
         occuped = false;
         bool = false;
         while(bool==false) {
-
             if(hm.containsKey(x)) {
                 for(Map.Entry m: hm.entrySet()) {
                     if((int)m.getKey() == x) {
@@ -261,13 +241,11 @@ public class Labyrinthe extends View implements SensorEventListener{
                 coins2 = cells[x][y];
                 hm.put(x,y);
             }
-
-
         }
+
         occuped = false;
         bool = false;
         while(bool==false) {
-
             if(hm.containsKey(x)) {
                 for(Map.Entry m: hm.entrySet()) {
                     if((int)m.getKey() == x) {
@@ -291,12 +269,10 @@ public class Labyrinthe extends View implements SensorEventListener{
                 coins3 = cells[x][y];
                 hm.put(x,y);
             }
-
         }
         occuped = false;
         bool = false;
         while(bool==false) {
-
             if(hm.containsKey(x)) {
                 for(Map.Entry m: hm.entrySet()) {
                     if((int)m.getKey() == x) {
@@ -320,12 +296,10 @@ public class Labyrinthe extends View implements SensorEventListener{
                 coins4 = cells[x][y];
                 hm.put(x,y);
             }
-
         }
         occuped = false;
         bool = false;
         while(bool==false) {
-
             if(hm.containsKey(x)) {
                 for(Map.Entry m: hm.entrySet()) {
                     if((int)m.getKey() == x) {
@@ -349,53 +323,45 @@ public class Labyrinthe extends View implements SensorEventListener{
                 coins5 = cells[x][y];
                 hm.put(x,y);
             }
-
-
         }
-
-        /*coins1 = cells[rdm1.nextInt(COLS-1)][rdm1.nextInt(ROWS-1)];
-        coins2 = cells[rdm1.nextInt(COLS-1)][rdm1.nextInt(ROWS-1)];
-        coins3 = cells[rdm1.nextInt(COLS-1)][rdm1.nextInt(ROWS-1)];
-        coins4 = cells[rdm1.nextInt(COLS-1)][rdm1.nextInt(ROWS-1)];
-        coins5 = cells[rdm1.nextInt(COLS-1)][rdm1.nextInt(ROWS-1)];*/
-
-
 
         current = cells[0][0];
         current.visited = true;
-
         do {
             next = getNeighbour(current);
-
             if(next != null) {
                 removeWall(current, next);
                 stack.push(current);
                 current = next;
                 current.visited = true;
             }
-
             else {
                 current = stack.pop();
             }
         } while(!stack.empty());
     }
 
+    /** Redimensionner les images dans le labyrinthe
+     * @param bm
+     * @param newWidth
+     * @param newHeight
+     **/
     public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
         int width = bm.getWidth();
         int height = bm.getHeight();
         float scaleWidth = ((float) newWidth) / width;
         float scaleHeight = ((float) newHeight) / height;
-        // CREATE A MATRIX FOR THE MANIPULATION
-        Matrix matrix = new Matrix();
-        // RESIZE THE BIT MAP
-        matrix.postScale(scaleWidth, scaleHeight);
-
-        // "RECREATE" THE NEW BITMAP
-        Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
+        Matrix matrix = new Matrix(); // CREATE A MATRIX FOR THE MANIPULATION
+        matrix.postScale(scaleWidth, scaleHeight); // RESIZE THE BIT MAP
+        Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false); // "RECREATE" THE NEW BITMAP
         bm.recycle();
         return resizedBitmap;
     }
 
+    /** Redimensionner les icones
+     * @param a
+     * @param b
+     **/
     public float iconResize(int a, int b) {
         int width=getWidth();
         int height=getHeight();
@@ -406,10 +372,12 @@ public class Labyrinthe extends View implements SensorEventListener{
         else{
             icon=height/(b+1);
         }
-
         return icon;
     }
 
+    /** Dessiner les images dans le labyrinthe
+     * @param canvas
+     **/
     @RequiresApi(api = Build.VERSION_CODES.O)
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
@@ -426,7 +394,6 @@ public class Labyrinthe extends View implements SensorEventListener{
 
         hMargin=(width-COLS*cellSize)/2;
         vMargin=(height-ROWS*cellSize)/2;
-
         canvas.translate(hMargin, vMargin);
 
         for(int x=0; x<COLS; x++){
@@ -447,7 +414,6 @@ public class Labyrinthe extends View implements SensorEventListener{
         }
 
         float margin = cellSize/10;
-
         int diffabs = ABSCURRENT - ABSNEXT;
         int difford = ORDCURRENT - ORDNEXT;
 
@@ -486,17 +452,12 @@ public class Labyrinthe extends View implements SensorEventListener{
                     ORDNEXT = ORDCURRENT;
                 }
             }
-
         }
-
-
 
         hiro = getResizedBitmap(hiro, (int)((player.col+1)*cellSize-(margin*2)), (int)((player.row+1)*cellSize-(margin)));
         canvas.drawBitmap(hiro, ABSCURRENT*cellSize+margin, ORDCURRENT*cellSize+margin, null);
-
         minotaur = getResizedBitmap(minotaur, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
-        canvas.drawBitmap(minotaur,minos.col*cellSize+margin, minos.row*cellSize+margin, null);
-        //Ici "minos" est une cellule ou il y a le minotaure
+        canvas.drawBitmap(minotaur,minos.col*cellSize+margin, minos.row*cellSize+margin, null); //Ici "minos" est une cellule où il y a le minotaure
 
         if(ABSCURRENT == coins1.col && ORDCURRENT == coins1.row && Bcoin1) {
             Bcoin1 = false;
@@ -529,7 +490,6 @@ public class Labyrinthe extends View implements SensorEventListener{
             BMinos = true;
         }
 
-
         if(Bcoin1) {
             coin1 = getResizedBitmap(coin1, (int)((player.col+1)*cellSize-margin), (int)((player.row+1)*cellSize-margin));
             canvas.drawBitmap(coin1,coins1.col*cellSize+margin, coins1.row*cellSize+margin, null);
@@ -556,78 +516,66 @@ public class Labyrinthe extends View implements SensorEventListener{
             Bdoor = true;
         }
 
-
-
         Paint paint = new Paint();
-
         paint.setColor(Color.BLACK);
         paint.setTextSize(35);
         coinPara = getResizedBitmap(coinPara, (int)((player.col+1)*iconResize(14, 9)-margin), (int)((player.row+1)*iconResize(14, 9)-margin));
         canvas.drawBitmap(coinPara,510, 615, null);
         canvas.drawText(" : " + nbPiece(), 550, 650, paint);
-
         heart = getResizedBitmap(heart, (int)((player.col+1)*iconResize(14, 9)-margin), (int)((player.row+1)*iconResize(14, 9)-margin));
         canvas.drawBitmap(heart,80, 615, null);
         canvas.drawText(" : " + nbVie(), 120, 650, paint);
-
         canvas.drawText(EThread.minute + "min  " + EThread.seconde + "sec", 275, 650, paint);
-
-        //canvas.drawText("Niveau " + GameActivity.NIVEAU, 300, 10, paint);
-
-
-        //System.out.println("Player[" + player.getCol() + "][" + player.getRow() + "]");
-        //canvas.drawRect(player.col*cellSize+margin, player.row*cellSize+margin, (player.col+1)*cellSize-margin, (player.row+1)*cellSize-margin, playerPaint); //AJOUT
-
-        //canvas.drawRect(exit.col*cellSize+margin, exit.row*cellSize+margin, (exit.col+1)*cellSize-margin, (exit.row+1)*cellSize-margin, exitPaint); //AJOUT
-
         invalidate();
     }
 
-    public int nbPiece() {
-        return piece;
-    }
+    public int nbPiece() {return piece;}
     public int nbVie() { return vie;}
 
-
-
-   private void moveImage(float deltaX, float deltaY, float x, float y, float lastX, float lastY) {
+    /** Déplacement de l'image
+     * @param deltaX
+     * @param deltaY
+     * @param lastX
+     * @param lastY
+     * @param x
+     * @param y
+     **/
+    private void moveImage(float deltaX, float deltaY, float x, float y, float lastX, float lastY) {
        int abs = ABSCURRENT;
        int ord = ORDCURRENT;
+
        if(deltaX != 0) {
            if(lastX - x < 0 && abs != COLS-1) { //droite
-               //player = cells[abs+1][ord];
                ABSNEXT += 1;
            }
            if(lastX - x > 0 && abs != 0) { //Gauche
-               //player = cells[abs-1][ord];
                ABSNEXT -= 1;
            }
        }
        else if(deltaY != 0) {
            if(lastY - y < 0 && ord != 0) { //Haut
-               //player = cells[abs][ord+1];
                ORDNEXT -= 1;
            }
            if(lastY - y > 0 && ord != ROWS-1) { //Bas
-               //player = cells[abs][ord-1];
                ORDNEXT += 1;
            }
        }
-
    }
 
 
-
-   @RequiresApi(api = Build.VERSION_CODES.N)
-   @Override
-   public void onSensorChanged(SensorEvent event) {
-
+    /** Méthode pour utiliser l'accéléromètre
+     * @param event
+     **/
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    public void onSensorChanged(SensorEvent event) {
        if(al.isEmpty()) {
            al.add((long) 0);
        }
        else {
            long curTime = System.currentTimeMillis();
            long lastUpdate = al.get(0);
+
            if ((curTime - lastUpdate) > 500) {
                long diffTime = (curTime - lastUpdate);
                lastUpdate = curTime;
@@ -636,15 +584,15 @@ public class Labyrinthe extends View implements SensorEventListener{
                float x = event.values[0];
                float y = event.values[1];
                Boolean bool = false;
+
                if (!lastValues.isEmpty()) {
                    for (Map.Entry mapentry : lastValues.entrySet()) {
                        lastX = (float) mapentry.getKey();
                        lastY = (float) mapentry.getValue();
                    }
-                   lastValues.remove(lastX, lastY);
 
-                  // lastValues.put(x, y);
-                    lastValues.put(0f,0f);
+                   lastValues.remove(lastX, lastY);
+                   lastValues.put(0f,0f);
                    deltaX = Math.abs(lastX - x);
                    deltaY = Math.abs(lastY - y);
 
@@ -654,17 +602,7 @@ public class Labyrinthe extends View implements SensorEventListener{
                    if (deltaY < 1) {
                        deltaY = 0;
                    }
-                  // System.out.println("Les valeurs sont x =" + x + "    y =" + y);
-                   //System.out.println("LastX = " + lastX + "      LastY = " + lastY);
-                   //System.out.println("DeltaX = " + deltaX + "      DeltaY =" + deltaY);
-
-                   try {
-                     //  System.out.println("Player[" + ABSCURRENT + "][" + ORDCURRENT + "]");
-                   } catch (NullPointerException e) {
-                       //System.out.println("Le player n'existe pas");
-                   }
-
-                   //System.out.println(" ");
+                   try {} catch (NullPointerException e) {}
 
                    if(ABSCURRENT == (COLS-1) && ORDCURRENT == (ROWS-1) && Bdoor) {
                        GameActivity.openWinDialog();
@@ -675,18 +613,14 @@ public class Labyrinthe extends View implements SensorEventListener{
                    else {
                        this.moveImage(deltaX, deltaY, x, y, lastX, lastY);
                    }
-                   //System.out.println("PlayerNEXT["+ ABSNEXT + "][" + ORDNEXT + "]");
-
                    invalidate();
-
                } else {
                    lastValues.put(x, y);
                    System.out.println("Les valeurs sont x =" + x + "    y =" + y);
                }
            }
-
        }
-   }
+    }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {}

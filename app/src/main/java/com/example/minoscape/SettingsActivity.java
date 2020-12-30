@@ -1,7 +1,5 @@
 package com.example.minoscape;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,11 +8,14 @@ import android.widget.RadioButton;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    Button start, menu;
-    RadioButton debutant, intermediaire, expert;
+    /* Cette classe correspond à la page des paramettres*/
+
     EThread et = new EThread();
     Thread t;
 
+    /** Cycle de vie de l'activité (création)
+     * @param savedInstanceState
+     **/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +27,6 @@ public class SettingsActivity extends AppCompatActivity {
         RadioButton intermediaire = (RadioButton)findViewById(R.id.intermediaire);
         RadioButton expert = (RadioButton)findViewById(R.id.Expert);
         GameActivity.pause = false;
-
         t = new Thread(et);
 
         start.setOnClickListener(new View.OnClickListener() {
@@ -65,18 +65,20 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
+    /** Retour à l'activité principale
+     * @param v
+     **/
     public void menu(View v) {
         // Create an intent for the activity
         Intent i = new Intent(this, MainActivity.class);
-
         // Start the activity
         startActivity(i);
     }
 
+    /** Accès à la page de jeu **/
     public void game() {
         // Create an intent for the activity
         Intent i = new Intent(this, GameActivity.class);
-
         // Start the activity
         startActivity(i);
     }
