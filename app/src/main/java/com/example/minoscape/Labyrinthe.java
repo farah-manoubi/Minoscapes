@@ -575,7 +575,7 @@ public class Labyrinthe extends View implements SensorEventListener{
         }
    }
 
-    /** Méthode pour utiliser l'accéléromètre
+    /** Méthode pour utiliser le gyroscope
      * @param event
      **/
     @RequiresApi(api = Build.VERSION_CODES.N)
