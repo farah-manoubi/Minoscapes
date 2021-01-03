@@ -1,5 +1,5 @@
-<div align="center">
 # Minoscape
+<div align="center">
 <img src="/capture/mino.png" alt="Minotaure" width=200/>  
 
 Réalisé par MANOUBI Farah, DENDOUNE Rayane & OBEYESEKARA Avishka  
