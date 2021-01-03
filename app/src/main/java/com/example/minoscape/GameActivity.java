@@ -10,7 +10,12 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity {
@@ -27,6 +32,8 @@ public class GameActivity extends AppCompatActivity {
     public static Dialog dialog;
     private static Context mContext;
     public static Boolean pause = false;
+    private TextView niveau;
+
 
     /** Cycle de vie de l'activité (création)
      * @param savedInstanceState
@@ -58,6 +65,9 @@ public class GameActivity extends AppCompatActivity {
         dialog = new Dialog(this);
         db = new DataBase(this);
         mContext = this;
+
+        niveau = (TextView)findViewById(R.id.niveau);
+        niveau.setText("Niveau " + niveau());
     }
 
     /** Cycle de vie de l'activité (reprendre) **/
@@ -235,5 +245,10 @@ public class GameActivity extends AppCompatActivity {
             }
         });
         dialog.show();
+    }
+
+    public static int niveau() {
+        Cursor res = db.getdata();
+        return res.getCount()+1;
     }
 }

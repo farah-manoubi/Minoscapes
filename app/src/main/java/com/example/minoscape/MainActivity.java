@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     public static Dialog dialog;
     private static Context mContext;
     private Button game;
+    public static int PERSONNAGE;
 
     /** Cycle de vie de l'activité (création)
      * @param savedInstanceState
@@ -51,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
     public void rules(View view) {
         // Create an intent for the activity
         Intent i = new Intent(this, RulesActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         // Start the activity
         startActivity(i);
     }
@@ -85,6 +87,11 @@ public class MainActivity extends AppCompatActivity {
         RadioButton intermediaire = dialog.findViewById(R.id.intermediaire);
         RadioButton expert = dialog.findViewById(R.id.Expert);
 
+        RadioButton hiro = dialog.findViewById(R.id.hiro);
+        RadioButton ninja = dialog.findViewById(R.id.ninja);
+        RadioButton femme = dialog.findViewById(R.id.femme);
+
+
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,6 +119,23 @@ public class MainActivity extends AppCompatActivity {
                     Labyrinthe.COLS = 8;
                     Labyrinthe.ROWS = 4;
                 }
+
+                if(hiro.isChecked()) {
+                    PERSONNAGE = 1;
+                }
+                if(ninja.isChecked()) {
+                    PERSONNAGE = 2;
+                }
+                if(femme.isChecked()) {
+                    PERSONNAGE = 3;
+                }
+                if(!hiro.isChecked() && !ninja.isChecked() && !femme.isChecked()) {
+                    PERSONNAGE = 1;
+                }
+
+                /*if(hiro.isPressed()) {
+                    Toast.makeText(MainActivity.this, "Vous avez choisi hiro", Toast.LENGTH_SHORT).show();
+                }*/
                 game(v);
             }
         });

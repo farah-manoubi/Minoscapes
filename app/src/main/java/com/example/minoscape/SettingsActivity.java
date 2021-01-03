@@ -8,7 +8,7 @@ import android.widget.RadioButton;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    /* Cette classe correspond à la page des paramettres*/
+    /* Cette classe correspond à la page des paramètres*/
 
     EThread et = new EThread();
     Thread t;
@@ -26,6 +26,9 @@ public class SettingsActivity extends AppCompatActivity {
         RadioButton debutant = (RadioButton)findViewById(R.id.debutant);
         RadioButton intermediaire = (RadioButton)findViewById(R.id.intermediaire);
         RadioButton expert = (RadioButton)findViewById(R.id.Expert);
+        RadioButton hiro =(RadioButton)findViewById(R.id.hiro);
+        RadioButton ninja = (RadioButton)findViewById(R.id.ninja);
+        RadioButton femme = (RadioButton)findViewById(R.id.femme);
         GameActivity.pause = false;
         t = new Thread(et);
 
@@ -44,6 +47,16 @@ public class SettingsActivity extends AppCompatActivity {
                     Labyrinthe.COLS = 14;
                     Labyrinthe.ROWS = 9;
                 }
+                if(hiro.isChecked()) {
+                    MainActivity.PERSONNAGE = 1;
+                }
+                if(ninja.isChecked()) {
+                    MainActivity.PERSONNAGE = 2;
+                }
+                if(femme.isChecked()) {
+                    MainActivity.PERSONNAGE = 3;
+                }
+
                 t.start();
                 EThread.seconde = 0;
                 EThread.minute = 0;

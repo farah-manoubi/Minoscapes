@@ -42,21 +42,24 @@ public class Labyrinthe extends View implements SensorEventListener{
     public static int vie = 3;
 
 
-    private static ArrayList<Float> gravity = new ArrayList<Float>();
-    private final float alpha = 0.8f;
-    private float g1, g2, l1, l2;
-    private static ArrayList<Float> linear = new ArrayList<Float>();
-
-
-    private float[] linear_acceleration;
-
 
     public Labyrinthe (Context context, AttributeSet attrs){
         super(context, attrs);
         wallPaint= new Paint();
         wallPaint.setColor(Color.BLACK);
         wallPaint.setStrokeWidth(WALL_THICKNESS);
-        hiro = BitmapFactory.decodeResource(getResources(), R.drawable.hiro);
+
+        if(MainActivity.PERSONNAGE == 1) {
+            hiro = BitmapFactory.decodeResource(getResources(), R.drawable.hiro);
+        }
+        else if(MainActivity.PERSONNAGE == 2) {
+            hiro = BitmapFactory.decodeResource(getResources(), R.drawable.ninja);
+        }
+        else if(MainActivity.PERSONNAGE == 3) {
+            hiro = BitmapFactory.decodeResource(getResources(), R.drawable.femme);
+        }
+
+
         minotaur = BitmapFactory.decodeResource(getResources(), R.drawable.minotaur);
         coin1 = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
         coin2 = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
@@ -67,10 +70,15 @@ public class Labyrinthe extends View implements SensorEventListener{
         porte = BitmapFactory.decodeResource(getResources(), R.drawable.door);
         coinPara = BitmapFactory.decodeResource(getResources(), R.drawable.coin);
         random = new Random();
-        //gravity[0] = 9.8f;
-        //gravity[1] = 9.8f;
 
         creatMaze();
+    }
+
+    public String personnage(int a) {
+        if(a==2) {
+            return " hiro = BitmapFactory.decodeResource(getResources(), R.drawable.hiro);";
+        }
+        return null;
     }
 
     public Labyrinthe (Context context, Bitmap hiro){

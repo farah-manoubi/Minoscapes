@@ -12,10 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Paramètres"
+        android:text="Bienvenue dans l'entre du château du Minotaure"
         android:textColor="#0B0000"
         android:textIsSelectable="true"
-        android:textSize="30sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Changez votre niveau de difficulté !"
+        android:text="Choisissez votre niveau de difficulté !"
         android:textColor="#0B0000"
         android:textIsSelectable="true"
         android:textStyle="bold"
@@ -36,8 +36,8 @@
 
     <RadioGroup
         android:id="@+id/radioGroup2"
-        android:layout_width="310dp"
-        android:layout_height="146dp"
+        android:layout_width="287dp"
+        android:layout_height="140dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="8dp"
@@ -94,16 +94,45 @@
             app:layout_constraintTop_toBottomOf="@+id/intermediaire" />
     </RadioGroup>
 
-    <Button
-        android:id="@+id/goBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:text="Retour"
-        app:backgroundTint="#000000"
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="412dp"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
+        app:layout_constraintVertical_bias="0.074">
+
+        <RadioButton
+            android:id="@+id/hiro"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/hiro"
+            app:buttonTint="#FA5E5D5D" />
+
+        <RadioButton
+            android:id="@+id/ninja"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/ninja"
+            app:buttonTint="#FA5E5D5D" />
+
+        <RadioButton
+            android:id="@+id/femme"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/femme"
+            app:buttonTint="#FA5E5D5D" />
+
+    </RadioGroup>
 
     <Button
         android:id="@+id/restartGame"
@@ -111,23 +140,35 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
         android:layout_marginLeft="45dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="Commencer"
         app:backgroundTint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.614"
         app:layout_constraintStart_toEndOf="@+id/goBack"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <Button
+        android:id="@+id/goBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Retour"
+        app:backgroundTint="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.167"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="410dp"
-        android:layout_height="202dp"
+        android:layout_width="407dp"
+        android:layout_height="161dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ASText"
         app:srcCompat="@drawable/labymino" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
