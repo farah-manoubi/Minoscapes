@@ -9,7 +9,7 @@ Université Cergy-Pontoise
 </div>
 
 
-## I. Introduction  
+<h2 align="center"> I. Introduction </h2>
 
 ### 1) Contexte du projet  
 
@@ -23,7 +23,9 @@ L’objectif de notre projet consiste en la réalisation d’un jeu sur mobile. 
 
 Tout d’abord, la première partie de ce rapport concernera les spécifications du projet. Elle contiendra toutes les informations concernant les données du projet "Minoscape" c’est à dire les notions de bases, les contraintes mais également leurs fonctionnalités. Ensuite nous traiterons de la partie réalisation, dans laquelle nous présenterons la conception des différentes activités et aussi quelques aspects techniques. Puis, viendra la partie "Manuel utilisateur" qui sera consacrée à l’utilisateur. En effet, cette partie expliquera comment est-ce que l’utilisateur pourra interagir avec notre jeu. Enfin, nous arriverons à la partie conclusion, où nous allons donner le bilan final de notre projet ainsi que les améliorations possibles pour celui-ci.
 
-## II. Spécification du projet
+
+<h2 align="center"> II. Spécification du projet </h2>
+
 
 ### 1)	Notions de base et contraintes du projet
 
@@ -83,7 +85,8 @@ Les fonctionnalités de notre programme sont les suivantes :
 
 Ces différents outils de développements sont ceux qui nous ont été imposés par notre enseignant et que nous avons utilisés au cours des TDs en Developping Application. Pour le développement en java nous avons utilisés le logiciel Android Studio. Nous avons synchronisé nos différents travaux en utilisant le service web d’hébergement GitHub qui nous a beaucoup servis pour travailler en groupe. Enfin, nous avons utilisé le service de base de données SQLite afin de stocker de manière efficace les scores du joueur et lui renvoyer ses 3 meilleurs scores.
 
-## III.	Conception et réalisation du projet  
+<h2 align="center"> III.	Conception et réalisation du projet </h2>
+
 
 Notre jeu est composé au totale de 5 activités :  
 * MainActivity qui correspond à la page d’accueil de notre jeu  
