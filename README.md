@@ -106,6 +106,7 @@ En effet, la page principale permet d’accéder à la page de jeu. Pour y accé
 *	Paladin  
 *	Héros aguerri  
 *	Guerrier légendaire  
+
 La taille du labyrinthe du jeu s’adaptera donc au niveau de difficulté choisi par l’utilisateur.  
 Cette page permet aussi d’accéder aux règles du jeu pour les gens qui vienne de découvrir l’application et également aux 3 meilleurs scores fait par l’utilisateur.  
 
