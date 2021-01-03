@@ -14,7 +14,7 @@ Université Cergy-Pontoise
 
 ### 1) Contexte du projet  
 
-Dans le cadre du module Developping Application du premier semestre de troisième année de Licence Informatique, les étudiants doivent réaliser en trinôme un projet qui sera développer en java, notamment avec le logiciel "Android Studio", en réutilisant certains éléments appris en cours et lors des TDs. Sur les différents sujets proposés par nos enseignants, nous avons décidé de choisir la réalisation d’un jeu sur mobile dont nous allons vous présenter l’objectif dans la partie suivante.
+Dans le cadre du module Developping Application du premier semestre de troisième année de Licence Informatique, les étudiants doivent réaliser en trinôme un projet qui sera développé en java, notamment avec le logiciel "Android Studio", en réutilisant certains éléments appris en cours et lors des TDs. Sur les différents sujets proposés par nos enseignants, nous avons décidé de choisir la réalisation d’un jeu sur mobile dont nous allons vous présenter l’objectif dans la partie suivante.
 
 ### 2) Objectifs du projet
 
@@ -40,7 +40,7 @@ Le minotaure est un personnage immobile, qui est positionné aléatoirement dans
 
 #### c) Labyrinthe
 
-La map du jeu est représenté par un labyrinthe dont la taille est modifiée selon le niveau de difficulté choisie préalablement par l’utilisateur. Le personnage est positionné initialement à la première case du labyrinthe (en haut à gauche) et la porte de sortie apparaitra (en bas à droite) une fois que le joueur aura récupérer toutes les pièces. A l’intérieur du labyrinthe, on retrouve le héros, le minotaure, les pièces dispersées, et la porte de sortie.
+La map du jeu est représenté par un labyrinthe dont la taille est modifiée selon le niveau de difficulté choisie préalablement par l’utilisateur, ils sont également générés aléatoirement. Le personnage est positionné initialement à la première case du labyrinthe (en haut à gauche) et la porte de sortie apparaitra (en bas à droite) une fois que le joueur aura récupéré toutes les pièces. A l’intérieur du labyrinthe, on retrouve le héros, le minotaure, les pièces dispersées, et la porte de sortie.
 
 #### d) Pièces
 
@@ -48,7 +48,7 @@ Les pièces sont au nombre de 5. Elles sont disposées aléatoirement dans le la
 
 #### e)	Chronomètre
 
-Lorsque la partie débute, un chronomètre est lancé. Il permet d’indiquer le temps que le joueur aura mis pour terminer la partie. Si le jeu est mis sur pause, le chronomètre sera alors suspendu et reprendra une fois que le joueur aura décider de reprendre la partie. De même si l’utilisateur décide de mettre l’application en second plan et d’y revenir par la suite. Après avoir terminé, le temps est enregistré dans une base de données, et permettra au joueur de visualiser ses 3 meilleures performances à partir de la page « meilleur score ».
+Lorsque la partie débute, un chronomètre est lancé. Il permet d’indiquer le temps que le joueur aura mis pour terminer la partie. Si le jeu est mis sur pause, le chronomètre sera alors suspendu et reprendra une fois que le joueur aura décider de reprendre la partie. De même si l’utilisateur décide de mettre l’application en second plan et d’y revenir par la suite, tout ceci représente le cycle de vie de l'activité. Après avoir terminé, le temps est enregistré dans une base de données, et permettra au joueur de visualiser ses 3 meilleures performances à partir de la page « meilleur score ».
 
 #### f)	Porte de sortie
 
@@ -63,6 +63,7 @@ Les fonctionnalités de notre programme sont les suivantes :
 * Utilise plus de 3 activités différentes  
 * Gère efficacement les cycle de vie de l’activité  
 * Permet au joueur de choisir son niveau de difficulté grâce aux paramètres  
+* Permet au joueur de choisir son personnage à l'aide des paramètres
 * Possède un écran de jeu  
 * Possède un écran de pause  
 
@@ -71,7 +72,7 @@ Les fonctionnalités de notre programme sont les suivantes :
 * Déplacer le personnage dans le labyrinthe.  
 * Récupérer des pièces.  
 * Mettre le jeu sur pause.  
-* Accéder au paramètre.  
+* Accéder aux paramètres.  
 * Reprendre la partie.  
 * Recommencer la partie.  
 * Accéder à la page des meilleurs scores.  
@@ -126,7 +127,7 @@ Le jeu peut se terminer de deux différentes façons :
 *	L’utilisateur n’a plus de vie dans quel cas un message de défaite lui sera transmis via une boite de dialogue  
 *	L’utilisateur a récupéré les 5 pièces et a réussi à accéder à la porte de sortie dans quel cas un message de victoire lui sera transmis via une boite de dialogue  
 
-L’utilisateur sera aussi en mesure de changer la difficulté du jeu en pleine partie en allant sur la page de « SettingsActivity »  
+L’utilisateur sera aussi en mesure de changer la difficulté du jeu en pleine partie en allant sur la page « SettingsActivity »  
 Il pourra également mettre le jeu sur pause en accédant à la page « BreakActivity »  
 
 
@@ -139,7 +140,7 @@ Ou il pourra revenir au jeu s’il ne veut pas changer de niveau de difficulté.
 #### d) BreakActivity  
 
 Dans la page « BreakActivity » nous pouvons accéder aux pages « GameActivity » et « MainActivity ».  
-Dans cette page, l’utilisateur pourra mettre le jeu en pause. En effet, il pourra y apercevoir différente information concernant la partie en cours tel que le temps écoulé depuis le début de la partie, le nombre de pièces récupéré ainsi que la vie qu’il lui reste.  
+Dans cette page, l’utilisateur pourra mettre le jeu en pause. En effet, il pourra y apercevoir différentes informations concernant la partie en cours tel que le temps écoulé depuis le début de la partie, le nombre de pièces récupérées ainsi que la vie qu’il lui reste.  
 A partir de cette même page, l’utilisateur sera dans la capacité de recommencer la partie avec le même labyrinthe ainsi que les pièces et le minotaure disposés aux mêmes emplacements qu’avant.  
 Il pourra aussi, s’il le souhaite, arrêter la partie et aller au menu principal.  
 
@@ -189,7 +190,7 @@ Suivant le niveau de difficulté du jeu, les images seront redimensionnées selo
 
 #### e)	Gyroscope
 
-Pour ce projet, nous avons décidé d’utiliser gyroscope en tant que capteur de mouvement. Effectivement, les déplacements de notre personnage se font uniquement grâce à ce capteur.  
+Pour ce projet, nous avons décidé d’utiliser un gyroscope en tant que capteur de mouvement. Effectivement, les déplacements de notre personnage se font uniquement grâce à ce capteur.  
 Si le téléphone est orienté vers le bas (écran vers le sol), le personnage se déplacera d’une case vers le bas sur l’axe des ordonnées.  
 Si le téléphone est orienté vers le haut (écran vers le ciel), le personnage se déplacera d’une case vers le haut sur l’axe des ordonnées.  
 Si le téléphone est orienté vers la droite, le personnage se déplacera d’une case vers la droite sur l’axe des abscisses.  
@@ -202,7 +203,7 @@ Le thread se lance à chaque début de partie et s’arrête a chaque fois que l
 
 #### g)	Base de données
 
-Afin de stocker les informations de l’utilisateur, nous avons décidé d’utiliser une base de données interne qui est SQLite. En effet, cette base de données nous permet de récupérer les informations en fin de partie tel que le niveau atteint, le temps écouler pour finir la partie, ainsi que la difficulté du niveau. Toutes ces informations nous permettent à la fin de sélectionner les 3 meilleurs scores de l’utilisateur et de les afficher dans la page « ScoreActivity ». 
+Afin de stocker les informations de l’utilisateur, nous avons décidé d’utiliser une base de données interne qui est SQLite. En effet, cette base de données nous permet de récupérer les informations en fin de partie tel que le niveau atteint, le temps écoulé pour finir la partie, ainsi que la difficulté du niveau. Toutes ces informations nous permettent à la fin de sélectionner les 3 meilleurs scores de l’utilisateur et de les afficher dans la page « ScoreActivity ». 
 
 #### h)	Boite de dialogue  
 
@@ -233,7 +234,7 @@ Si l’utilisateur appuie sur le bouton « Lancer jeu » depuis le menu principa
 
 <div align="center"><img src="/capture/avantLancerjeu.PNG" alt="Boite de dialogue avant le jeu" width=200/></div>
 
-Sur cette boite de dialogue, l’utilisateur pourra choisir le niveau de difficulté qu’il voudra puis en appuyant sur « Commencer » la page « GameActivity » s’affichera alors à l’écran et la partie débutera. Ou alors il peut décider d’appuyer sur le bouton « Retour » afin de rester sur la page principale.  
+Sur cette boite de dialogue, l’utilisateur pourra choisir le niveau de difficulté qu’il voudra ainsi que le personnage avec lequel il veut jouer, puis en appuyant sur « Commencer » la page « GameActivity » s’affichera alors à l’écran et la partie débutera. Ou alors il peut décider d’appuyer sur le bouton « Retour » afin de rester sur la page principale.  
 
 Si l’utilisateur décide de commencer une partie avec le niveau de difficulté « Paladin », un labyrinthe de taille 8x4 s’affichera alors à l’écran :  
 
@@ -247,7 +248,7 @@ Si l’utilisateur décide de commencer une partie avec le niveau de difficulté
 
 <div align="center"><img src="/capture/labExpert.PNG" alt="Difficulté Guerrier Legendaire" width=200/></div>
 
-Voici comment se présente la page « GameActivity » après avoir sélectionner son niveau à partir de la boite de dialogue :  
+Voici comment se présente la page « GameActivity » après avoir sélectionné son niveau de difficulté et son personnage à partir de la boite de dialogue :  
 
 <div align="center"><img src="/capture/apresLancerDebutant.PNG" alt="Page de jeu" width=200/></div>
 
@@ -259,7 +260,7 @@ Si l’utilisateur appuie sur le bouton des paramètres à partir de la page de 
 <div align="center"><img src="/capture/parametre.PNG" alt="Page des paramètres" width=200/></div>
 
 Si l’utilisateur appuie sur le bouton « Retour », cela le renverra vers la page de jeu où il était en continuant la même partie.  
-Mais si l’utilisateur sélectionne un nouveau niveau de difficulté puis appuie sur le bouton « Commencer », une nouvelle partie débutera avec un nouveau labyrinthe redimensionner en conséquence. Il peut également changer de personnage s'il le souhaite en cliquant sur un des trois personnages visibles à l'écran.  
+Mais si l’utilisateur sélectionne un nouveau niveau de difficulté et un nouveau personnage, s'il le souhaite, puis appuie sur le bouton « Commencer », une nouvelle partie débutera avec un nouveau labyrinthe redimensionner en conséquence. Il peut également changer de personnage s'il le souhaite en cliquant sur un des trois personnages visibles à l'écran.  
 
 Si l’utilisateur appuie sur le bouton de pause à partir de la page de jeu « GameActivity », il sera alors redirigé vers « BreakActivity » qui lui permettra alors de mettre le jeu en pause :  
 
