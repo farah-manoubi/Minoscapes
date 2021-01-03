@@ -283,6 +283,11 @@ Dans ces deux cas, l’utilisateur sera dans la capacité d’accéder au menu p
 
 <h2 align="center"> V. Conclusion </h2>
 
+Dans cette section, nous résumons la réalisation du projet et nous présentons également les extensions et améliorations possibles du projet.  
+En conclusion, nous avons traité en grande partie les attendus du projet. En effet, notre application gère efficacement les cycles de vie de l’activité. Elle comporte au totale 6 activités communiquant entre elles. Notre personnage se déplace dans le labyrinthe grâce au capteur de mouvement que nous avons choisit qui est le gyroscope. L’utilisateur peut paramétrer le niveau de difficulté qu’il souhaite avant chaque partie. Il peut également mettre le jeu sur pause et reprendre au moment voulu. Les scores obtenus sont stockés dans une base de données SQLite en local et il pourra accéder à ses trois meilleurs scores depuis une des pages du menu.  
+Cependant, quelques améliorations auraient été les bienvenues par exemple que l'utilisateur puisse créer son propre personnage pour qu'il puisse évoluer avec au cours des différentes parties. De plus, nous aurions pu ajouter des déplacements au minotaure pour rendre le jeu un peu plus dynamique.   
+
+
 <h2 align="center"> VI. Références   </h2>
   
 Pour la création du labyrinthe aléatoire :  
