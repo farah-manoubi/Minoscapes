@@ -32,7 +32,7 @@ Tout d’abord, la première partie de ce rapport concernera les spécifications
 
 #### a) Héros
 
-Le héros correspond au personnage principal de notre jeu. Lors du lancement de la partie, ce dernier est positionné dans la première case du labyrinthe. Il possède dès le début 3 vies, si le joueur ne possède plus de vie la partie se termine. Il se déplace de case en case à l’aide de mouvements effectués par le gyroscope du téléphone. Les mouvements horizontaux permettent de déplacer le personnage à gauche ou à droite. Quant aux mouvements verticaux, ils permettent de déplacer le personnage vers le haut ou vers le bas.
+L'utilisateur a le choix entre 3 héros différents avant de débuter la partie. Lors du lancement de la partie, ce dernier est positionné dans la première case du labyrinthe. Il possède dès le début 3 vies, si le joueur ne possède plus de vie la partie se termine. Il se déplace de case en case à l’aide de mouvements effectués par le gyroscope du téléphone. Les mouvements horizontaux permettent de déplacer le personnage à gauche ou à droite. Quant aux mouvements verticaux, ils permettent de déplacer le personnage vers le haut ou vers le bas.
 
 #### b) Minotaure
 
@@ -204,7 +204,7 @@ Afin de stocker les informations de l’utilisateur, nous avons décidé d’uti
 
 #### h)	Boite de dialogue  
 
-Pour ce projet, nous avons aussi utiliser des boites de dialogues à différents emplacements. Tout d’abord, nous avons décidé d’utiliser une boite de dialogue dans la page « MainActivity » afin de permettre à l’utilisateur de choisir son niveau de difficulté. De plus, une boite de dialogue apparait à la fin de la partie si l’utilisateur à gagner ou perdu la partie avec en conséquence un message de victoire ou de défaite.  
+Pour ce projet, nous avons aussi utiliser des boites de dialogues à différents emplacements. Tout d’abord, nous avons décidé d’utiliser une boite de dialogue dans la page « MainActivity » afin de permettre à l’utilisateur de choisir son niveau de difficulté ainsi que le personnage avec lequel il veut jouer. De plus, une boite de dialogue apparait à la fin de la partie si l’utilisateur à gagner ou perdu la partie avec en conséquence un message de victoire ou de défaite.  
 
 <h2 align="center"> IV. Manuel d'utilisateur </h2>
 
@@ -250,20 +250,20 @@ Voici comment se présente la page « GameActivity » après avoir sélectionner
 <div align="center"><img src="/capture/apresLancerDebutant.PNG" alt="Page de jeu" width=200/></div>
 
 Sur cette page, nous pouvons apercevoir deux différents compteurs au bas de l’écran : L’un pour le nombre de vie, et l’autre pour le nombre de pièces récupérées, ainsi qu’un chronomètre qui mesurera le temps mis par l’utilisateur pour finir la partie.  
-En haut de l’écran, on remarque deux différents boutons, l’un pour les paramètres, et l’autre pour mettre le jeu en pause.  
+En haut de l’écran, on remarque deux différents boutons, l’un pour les paramètres, et l’autre pour mettre le jeu en pause. On peut également visualiser le niveau actuel affiché au dessus du labyrinthe.  
 
 Si l’utilisateur appuie sur le bouton des paramètres à partir de la page de jeu « GameActivity », il sera alors redirigé vers « SettingsActivity » qui lui permettra alors de choisir un autre niveau de difficulté :  
 
 <div align="center"><img src="/capture/parametre.PNG" alt="Page des paramètres" width=200/></div>
 
-Si l’utilisateur appuie sur le bouton « Retour », cela le renverra vers la page de jeu ou il était en continuant la même partie.  
-Mais si l’utilisateur sélectionne un nouveau niveau de difficulté puis appuie sur le bouton « Commencer », une nouvelle partie débutera avec un nouveau labyrinthe redimensionner en conséquence.  
+Si l’utilisateur appuie sur le bouton « Retour », cela le renverra vers la page de jeu où il était en continuant la même partie.  
+Mais si l’utilisateur sélectionne un nouveau niveau de difficulté puis appuie sur le bouton « Commencer », une nouvelle partie débutera avec un nouveau labyrinthe redimensionner en conséquence. Il peut également changer de personnage s'il le souhaite en cliquant sur un des trois personnages visibles à l'écran.  
 
 Si l’utilisateur appuie sur le bouton de pause à partir de la page de jeu « GameActivity », il sera alors redirigé vers « BreakActivity » qui lui permettra alors de mettre le jeu en pause :  
 
 <div align="center"><img src="/capture/pagePause.PNG" alt="Page de Pause" width=200/></div>
 
-A partir de cette page, l’utilisateur pourra reprendre la partie exactement la où elle a été interrompue c’est-à-dire avec les mêmes valeurs pour le compteur de temps, qui reprendra de nouveau.  
+A partir de cette page, l’utilisateur pourra reprendre la partie exactement là où elle a été interrompue c’est-à-dire avec les mêmes valeurs pour le compteur de temps, qui reprendra de nouveau.  
 Dans le cas ou l’utilisateur voudrait recommencer la partie, le même labyrinthe sera redessiné avec les pièces à leur position initiale. Le compteur de pièce et de temps recommencera à 0 et le compteur de vie reviendra à 3.  
 Si l’utilisateur appuie sur menu principal, cela le redirigera sur la page « MainActivity ».  
 
