@@ -213,7 +213,7 @@ Pour ce projet, nous avons aussi utiliser des boites de dialogues à différents
 Cette partie est consacrée à l’utilisateur. Elle va permettre d’expliquer le fonctionnement de l’application et comment l’utilisateur va pouvoir interagir avec celle-ci.  
 Lorsque l’utilisateur lance l’application, la page principale s’affiche alors à l’écran (à savoir la page « MainActivity »)  
 
-<div align="center"><img src="/capture/ecranPrincipale.PNG" alt="Ecran Principal" width=200/></div>
+<div align="center"><img src="/capture/ecranPrincipale.PNG" alt="Ecran Principal"/></div>
 
 Sur cette page de menu principal, l’utilisateur peut visualiser différents boutons tel que le bouton « Règles du jeu », le bouton « Meilleurs scores » et « Lancer jeu ». Lorsque l’utilisateur appuie sur le bouton « Règles du jeu » il sera redirigé vers la page de règle (à savoir « RulesActivity »). S’il appuie sur le bouton « Meilleurs scores », il sera alors redirigé vers la page affichant les 3 meilleurs score (à savoir « ScoreActivity »). Enfin, lorsque l’utilisateur clique sur le bouton « Lancer jeu », une boite de dialogue apparaitra alors à l’écran et permettra à l’utilisateur de choisir le niveau de difficulté souhaité.  
 
