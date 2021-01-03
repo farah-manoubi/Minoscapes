@@ -9,6 +9,7 @@ Université Cergy-Pontoise
 </div>
 
 
+
 <h2 align="center"> I. Introduction </h2>
 
 ### 1) Contexte du projet  
@@ -202,7 +203,7 @@ Afin de stocker les informations de l’utilisateur, nous avons décidé d’uti
 
 Pour ce projet, nous avons aussi utiliser des boites de dialogues à différents emplacements. Tout d’abord, nous avons décidé d’utiliser une boite de dialogue dans la page « MainActivity » afin de permettre à l’utilisateur de choisir son niveau de difficulté. De plus, une boite de dialogue apparait à la fin de la partie si l’utilisateur à gagner ou perdu la partie avec en conséquence un message de victoire ou de défaite.  
 
-## IV. Manuel d'utilisateur  
+<h2 align="center"> IV. Manuel d'utilisateur </h2>
 
 Cette partie est consacrée à l’utilisateur. Elle va permettre d’expliquer le fonctionnement de l’application et comment l’utilisateur va pouvoir interagir avec celle-ci.  
 Lorsque l’utilisateur lance l’application, la page principale s’affiche alors à l’écran (à savoir la page « MainActivity »)  
@@ -275,11 +276,9 @@ Le jeu qui se déroule dans « GameActivity » se terminera à deux conditions :
 
 Dans ces deux cas, l’utilisateur sera dans la capacité d’accéder au menu principal en appuyant sur le bouton « menu » et commencer une nouvelle partie en appuyant sur l’autre bouton.  
 
+<h2 align="center"> V. Conclusion </h2>
 
-
-## V. Conclusion  
-
-## VI. Références  
+<h2 align="center"> VI. Références   </h2>
   
 Pour la création du labyrinthe aléatoire :  
 -	https://youtu.be/I9lTBTAk5MU  
