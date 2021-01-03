@@ -197,6 +197,7 @@ Pour ce projet, nous avons aussi utiliser des boites de dialogues à différents
 
 ## IV. Manuel d'utilisateur  
 
+![Gagner](Minoscapes/capture/gagner.PNG)
 
 ## V. Conclusion  
 
