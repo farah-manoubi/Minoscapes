@@ -1,10 +1,12 @@
+
 # Minoscape
 <img src="/capture/mino.png" alt="Minotaure" width=200/>  
 
-Réalisé par MANOUBI Farah, DENDOUNE Rayane & OBEYESEKARA Avishka  
+<div align="center"> Réalisé par MANOUBI Farah, DENDOUNE Rayane & OBEYESEKARA Avishka  </div>
 manoubi.farah@yahoo.com, rayane.dendoune@gmail.com, avishka2007@gmail.com  
 30/12/20  
-Université Cergy-Pontoise  
+Université Cergy-Pontoise 
+
 
 
 ## I. Introduction  
