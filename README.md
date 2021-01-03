@@ -208,57 +208,57 @@ Pour ce projet, nous avons aussi utiliser des boites de dialogues à différents
 Cette partie est consacrée à l’utilisateur. Elle va permettre d’expliquer le fonctionnement de l’application et comment l’utilisateur va pouvoir interagir avec celle-ci.  
 Lorsque l’utilisateur lance l’application, la page principale s’affiche alors à l’écran (à savoir la page « MainActivity »)  
 
-<img src="/capture/ecranPrincipale.PNG" alt="Ecran Principal" width=200/>
+<div align="center"><img src="/capture/ecranPrincipale.PNG" alt="Ecran Principal" width=200/></div>
 
 Sur cette page de menu principal, l’utilisateur peut visualiser différents boutons tel que le bouton « Règles du jeu », le bouton « Meilleurs scores » et « Lancer jeu ». Lorsque l’utilisateur appuie sur le bouton « Règles du jeu » il sera redirigé vers la page de règle (à savoir « RulesActivity »). S’il appuie sur le bouton « Meilleurs scores », il sera alors redirigé vers la page affichant les 3 meilleurs score (à savoir « ScoreActivity »). Enfin, lorsque l’utilisateur clique sur le bouton « Lancer jeu », une boite de dialogue apparaitra alors à l’écran et permettra à l’utilisateur de choisir le niveau de difficulté souhaité.  
 
 Si nous appuyons sur « Règles du jeu » à partir du menu principal, la page « RulesActivity » se lancera :  
 
-<img src="/capture/regleJeu.PNG" alt="Regle du jeu" width=200/>
+<div align="center"><img src="/capture/regleJeu.PNG" alt="Regle du jeu" width=200/></div>
 
 Sur cette page, l’utilisateur pourra lire toutes les règles du jeu et pourra par la suite appuyer sur le bouton retour qui le renverra vers le menu principal.  
 
 Si nous appuyons sur « Meilleurs Scores » depuis le menu principal, la page « ScoreActivity » se lancera :  
 
-<img src="/capture/meilleurScore.PNG" alt="Page des scores" width=200/>
+<div align="center"><img src="/capture/meilleurScore.PNG" alt="Page des scores" width=200/></div>
 
 Sur cette page, l’utilisateur pourra y apercevoir ses 3 meilleurs scores et pourra par la suite appuyer sur le bouton retour qui le renverra vers le menu principal.  
 
 Si l’utilisateur appuie sur le bouton « Lancer jeu » depuis le menu principal, une boite de dialogue apparaitra :  
 
-<img src="/capture/avantLancerjeu.PNG" alt="Boite de dialogue avant le jeu" width=200/>
+<div align="center"><img src="/capture/avantLancerjeu.PNG" alt="Boite de dialogue avant le jeu" width=200/></div>
 
 Sur cette boite de dialogue, l’utilisateur pourra choisir le niveau de difficulté qu’il voudra puis en appuyant sur « Commencer » la page « GameActivity » s’affichera alors à l’écran et la partie débutera. Ou alors il peut décider d’appuyer sur le bouton « Retour » afin de rester sur la page principale.  
 
 Si l’utilisateur décide de commencer une partie avec le niveau de difficulté « Paladin », un labyrinthe de taille 8x4 s’affichera alors à l’écran :  
 
-<img src="/capture/labDebutant.PNG" alt="Difficulté Paladin" width=200/>
+<div align="center"><img src="/capture/labDebutant.PNG" alt="Difficulté Paladin" width=200/></div>
 
 Si l’utilisateur décide de commencer une partie avec le niveau de difficulté « Héros aguerri », un labyrinthe de taille 10x5 s’affichera alors à l’écran :  
 
-<img src="/capture/labInter.PNG" alt="Difficulté Heros Aguerri" width=200/>
+<div align="center"><img src="/capture/labInter.PNG" alt="Difficulté Heros Aguerri" width=200/></div>
 
 Si l’utilisateur décide de commencer une partie avec le niveau de difficulté « Guerrier légendaire », un labyrinthe de taille 14x9 s’affichera alors à l’écran :  
 
-<img src="/capture/labExpert.PNG" alt="Difficulté Guerrier Legendaire" width=200/>
+<div align="center"><img src="/capture/labExpert.PNG" alt="Difficulté Guerrier Legendaire" width=200/></div>
 
 Voici comment se présente la page « GameActivity » après avoir sélectionner son niveau à partir de la boite de dialogue :  
 
-<img src="/capture/apresLancerDebutant.PNG" alt="Page de jeu" width=200/>
+<div align="center"><img src="/capture/apresLancerDebutant.PNG" alt="Page de jeu" width=200/></div>
 
 Sur cette page, nous pouvons apercevoir deux différents compteurs au bas de l’écran : L’un pour le nombre de vie, et l’autre pour le nombre de pièces récupérées, ainsi qu’un chronomètre qui mesurera le temps mis par l’utilisateur pour finir la partie.  
 En haut de l’écran, on remarque deux différents boutons, l’un pour les paramètres, et l’autre pour mettre le jeu en pause.  
 
 Si l’utilisateur appuie sur le bouton des paramètres à partir de la page de jeu « GameActivity », il sera alors redirigé vers « SettingsActivity » qui lui permettra alors de choisir un autre niveau de difficulté :  
 
-<img src="/capture/parametre.PNG" alt="Page des paramètres" width=200/>
+<div align="center"><img src="/capture/parametre.PNG" alt="Page des paramètres" width=200/></div>
 
 Si l’utilisateur appuie sur le bouton « Retour », cela le renverra vers la page de jeu ou il était en continuant la même partie.  
 Mais si l’utilisateur sélectionne un nouveau niveau de difficulté puis appuie sur le bouton « Commencer », une nouvelle partie débutera avec un nouveau labyrinthe redimensionner en conséquence.  
 
 Si l’utilisateur appuie sur le bouton de pause à partir de la page de jeu « GameActivity », il sera alors redirigé vers « BreakActivity » qui lui permettra alors de mettre le jeu en pause :  
 
-<img src="/capture/pagePause.PNG" alt="Page de Pause" width=200/>
+<div align="center"><img src="/capture/pagePause.PNG" alt="Page de Pause" width=200/></div>
 
 A partir de cette page, l’utilisateur pourra reprendre la partie exactement la où elle a été interrompue c’est-à-dire avec les mêmes valeurs pour le compteur de temps, qui reprendra de nouveau.  
 Dans le cas ou l’utilisateur voudrait recommencer la partie, le même labyrinthe sera redessiné avec les pièces à leur position initiale. Le compteur de pièce et de temps recommencera à 0 et le compteur de vie reviendra à 3.  
@@ -268,11 +268,11 @@ Le jeu qui se déroule dans « GameActivity » se terminera à deux conditions :
 
 * Si le joueur a perdu toutes ses vies, dans quel cas une boite de dialogue avec un message de défaite apparaitra  
 
-<img src="/capture/perdu.PNG" alt="Perdu" width=200/>
+<div align="center"><img src="/capture/perdu.PNG" alt="Perdu" width=200/></div>
 
 * Si le joueur a récupéré l’intégralité des pièces et a réussi à accéder à la porte de sortie dans quel cas une boite de dialogue avec un message de victoire apparaitra
 
-<img src="/capture/gagner.PNG" alt="Gagner" width=200/>
+<div align="center"><img src="/capture/gagner.PNG" alt="Gagner" width=200/></div>
 
 Dans ces deux cas, l’utilisateur sera dans la capacité d’accéder au menu principal en appuyant sur le bouton « menu » et commencer une nouvelle partie en appuyant sur l’autre bouton.  
 
