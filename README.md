@@ -117,10 +117,12 @@ Comme dit précédemment, la taille du labyrinthe s’adaptera donc au niveau de
 *	Le niveau Paladin correspond à un labyrinthe de taille 8x4  
 *	Le niveau Héros aguerri correspond à un labyrinthe de taille 10x5  
 *	Le niveau Guerrier légendaire correspond à un labyrinthe de taille 14x9  
+
 Le jeu débute avec une totalité de 5 pièces disséminées aléatoirement dans le labyrinthe.  
 Le jeu peut se terminer de deux différentes façons :  
 *	L’utilisateur n’a plus de vie dans quel cas un message de défaite lui sera transmis via une boite de dialogue  
 *	L’utilisateur a récupéré les 5 pièces et a réussi à accéder à la porte de sortie dans quel cas un message de victoire lui sera transmis via une boite de dialogue  
+
 L’utilisateur sera aussi en mesure de changer la difficulté du jeu en pleine partie en allant sur la page de « SettingsActivity »  
 Il pourra également mettre le jeu sur pause en accédant à la page « BreakActivity »  
 
