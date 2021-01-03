@@ -97,7 +97,7 @@ Notre jeu est composé au totale de 5 activités :
 * HighScore qui contiendra les meilleurs scores du joueur  
 * SettingsActivity qui permet au joueur de changer le niveau de difficulté  
 
-<div align="center"><img src="/capture/lien.PNG" alt="Boite de dialogue avant le jeu"/></div>
+<div align="center"><img src="/capture/lien.PNG" alt="Boite de dialogue avant le jeu" width=400/></div>
 
 ### 1)	Les différentes activités  
 
