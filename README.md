@@ -1,4 +1,4 @@
-# Minoscape
+<h1 align="center> Minoscape </h1>
 <div align="center">
 <img src="/capture/mino.png" alt="Minotaure" width=200/>  
 
