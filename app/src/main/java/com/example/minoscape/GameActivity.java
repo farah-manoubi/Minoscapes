@@ -155,13 +155,13 @@ public class GameActivity extends AppCompatActivity {
         String difficulty = "";
 
         if(Labyrinthe.COLS == 8 && Labyrinthe.ROWS == 4) {
-            difficulty = "Debutant";
+            difficulty = "Paladin";
         }
         if(Labyrinthe.COLS == 10 && Labyrinthe.ROWS == 5) {
-            difficulty = "Intermediaire";
+            difficulty = "Heros Aguerri";
         }
         if(Labyrinthe.COLS == 14 && Labyrinthe.ROWS == 9) {
-            difficulty = "Expert";
+            difficulty = "Guerrier Legendaire";
         }
 
         if(res.getCount()==0){
